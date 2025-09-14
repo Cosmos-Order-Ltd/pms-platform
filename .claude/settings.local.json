@@ -19,7 +19,9 @@
       "Bash(npx tsc:*)",
       "Bash(timeout 60 npm run build)",
       "Bash(npm run type-check:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Read(//c/Users/User/Desktop/pms-platform/**)",
+      "Bash(npm init:*)"
     ],
     "deny": [],
     "ask": []
