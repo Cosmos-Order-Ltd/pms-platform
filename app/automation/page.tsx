@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 
 interface AutomationCondition {
   field: string
-  operator: 'equals' | 'not_equals' | 'greater_than' | 'less_than' | 'contains' | 'not_contains'
-  value: string | number | boolean
+  operator: 'equals' | 'not_equals' | 'greater_than' | 'less_than' | 'contains' | 'not_contains' | 'not_empty'
+  value: string | number | boolean | null
 }
 
 interface AutomationTrigger {

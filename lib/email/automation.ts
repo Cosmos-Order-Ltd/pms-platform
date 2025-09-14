@@ -36,7 +36,7 @@ interface Reservation {
   datesChanged?: boolean
 }
 
-interface EmailSchedule {
+interface _EmailSchedule {
   id: string
   type: 'pre_arrival' | 'checkout_reminder' | 'post_stay_feedback' | 'loyalty_points'
   reservationId: string
@@ -45,7 +45,7 @@ interface EmailSchedule {
   sent: boolean
 }
 
-interface AutomationRule {
+interface _AutomationRule {
   id: string
   name: string
   trigger: 'reservation_created' | 'reservation_modified' | 'check_in' | 'check_out'
