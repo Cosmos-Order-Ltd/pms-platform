@@ -45,7 +45,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { name: string; type: string; location: string; rooms: number; managedBy: string; settings?: any }
     const { name, type, location, rooms, managedBy, settings = {} } = body
 
     const newProperty = {
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { name: string; type: string; location: string; rooms: number; managedBy: string; settings?: any }
     const { id, action, ...updateData } = body
 
     const propertyIndex = properties.findIndex(prop => prop.id === id)
