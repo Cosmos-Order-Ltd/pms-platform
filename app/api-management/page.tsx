@@ -186,7 +186,7 @@ export default function APIManagementPage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success: boolean; message?: string }
       if (data.success) {
         toast.success('API logs exported successfully! Check your downloads folder.', { id: toastId })
       } else {

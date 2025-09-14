@@ -189,9 +189,9 @@ export default function AdminPage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success: boolean; message?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || "Success", { id: toastId })
       } else {
         toast.error('Failed to export audit logs', { id: toastId })
       }
@@ -211,9 +211,9 @@ export default function AdminPage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success: boolean; message?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || "Success", { id: toastId })
       } else {
         toast.error('Failed to refresh system health', { id: toastId })
       }

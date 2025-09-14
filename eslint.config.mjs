@@ -96,6 +96,7 @@ const config = typescriptEslint.config(
           },
         },
       ],
+      "import/no-unresolved": "off",
     },
   }
 )

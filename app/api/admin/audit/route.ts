@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { action?: string; format?: string; timeRange?: string }
     const { action = 'export', format = 'csv', timeRange = '24h' } = body
 
     if (action === 'export') {
