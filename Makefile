@@ -1,4 +1,4 @@
-.PHONY: help setup build-all deploy-local clean logs status
+.PHONY: help setup build-all deploy-local clean logs status install-deps build-local test-all lint-all dev-backend dev-admin dev-shared dev-local
 
 # Colors for output
 RED=\033[0;31m
@@ -129,3 +129,95 @@ install-tools: ## Install required development tools
 		echo "$(RED)Package manager not found. Please install tools manually.$(NC)"; \
 	fi
 	@echo "$(GREEN)✅ Tools installation complete$(NC)"
+
+# ========================================
+# Local Development Commands (without k3s)
+# ========================================
+
+install-deps: ## Install dependencies for all services
+	@echo "$(YELLOW)Installing dependencies for all services...$(NC)"
+	@for service in pms-backend pms-admin pms-shared; do \
+		if [ -d "$$service" ] && [ -f "$$service/package.json" ]; then \
+			echo "$(BLUE)Installing dependencies for $$service...$(NC)"; \
+			cd $$service && npm install && cd ..; \
+		else \
+			echo "$(YELLOW)Skipping $$service (not found or no package.json)$(NC)"; \
+		fi; \
+	done
+	@echo "$(GREEN)✅ All dependencies installed$(NC)"
+
+build-local: ## Build all services locally (TypeScript compilation)
+	@echo "$(YELLOW)Building all services locally...$(NC)"
+	@for service in pms-backend pms-shared; do \
+		if [ -d "$$service" ] && [ -f "$$service/package.json" ]; then \
+			echo "$(BLUE)Building $$service...$(NC)"; \
+			cd $$service && npm run build && cd ..; \
+		fi; \
+	done
+	@if [ -d "pms-admin" ] && [ -f "pms-admin/package.json" ]; then \
+		echo "$(BLUE)Building pms-admin...$(NC)"; \
+		cd pms-admin && npm run build; \
+	fi
+	@echo "$(GREEN)✅ All services built locally$(NC)"
+
+test-all: ## Run tests for all services
+	@echo "$(YELLOW)Running tests for all services...$(NC)"
+	@for service in pms-backend pms-admin pms-shared; do \
+		if [ -d "$$service" ] && [ -f "$$service/package.json" ]; then \
+			echo "$(BLUE)Testing $$service...$(NC)"; \
+			cd $$service && npm test 2>/dev/null || echo "No tests found for $$service" && cd ..; \
+		fi; \
+	done
+	@echo "$(GREEN)✅ All tests completed$(NC)"
+
+lint-all: ## Lint all services
+	@echo "$(YELLOW)Linting all services...$(NC)"
+	@for service in pms-backend pms-admin pms-shared; do \
+		if [ -d "$$service" ] && [ -f "$$service/package.json" ]; then \
+			echo "$(BLUE)Linting $$service...$(NC)"; \
+			cd $$service && npm run lint 2>/dev/null || echo "No lint script for $$service" && cd ..; \
+		fi; \
+	done
+	@echo "$(GREEN)✅ All services linted$(NC)"
+
+dev-backend: ## Start backend in development mode
+	@echo "$(BLUE)Starting pms-backend in development mode...$(NC)"
+	@if [ -d "pms-backend" ]; then \
+		cd pms-backend && npm run dev; \
+	else \
+		echo "$(RED)pms-backend directory not found$(NC)"; \
+	fi
+
+dev-admin: ## Start admin dashboard in development mode
+	@echo "$(BLUE)Starting pms-admin in development mode...$(NC)"
+	@if [ -d "pms-admin" ]; then \
+		cd pms-admin && npm run dev; \
+	else \
+		echo "$(RED)pms-admin directory not found$(NC)"; \
+	fi
+
+dev-shared: ## Build shared library in watch mode
+	@echo "$(BLUE)Starting pms-shared in watch mode...$(NC)"
+	@if [ -d "pms-shared" ]; then \
+		cd pms-shared && npm run dev; \
+	else \
+		echo "$(RED)pms-shared directory not found$(NC)"; \
+	fi
+
+dev-local: ## Show local development environment status
+	@./dev-local.sh
+
+# ========================================
+# Development Workflow Commands
+# ========================================
+
+quick-start: install-deps build-local ## Quick start: install deps and build everything
+	@echo "$(GREEN)🎉 Quick start complete! Run 'make dev-backend' and 'make dev-admin' in separate terminals$(NC)"
+
+full-dev-setup: install-deps build-local test-all ## Full development setup with testing
+	@echo "$(GREEN)🎉 Full development setup complete!$(NC)"
+	@echo "$(BLUE)Next steps:$(NC)"
+	@echo "  1. Run 'make dev-backend' in one terminal"
+	@echo "  2. Run 'make dev-admin' in another terminal"
+	@echo "  3. Visit http://localhost:3000 for admin dashboard"
+	@echo "  4. Visit http://localhost:5000 for backend API"

@@ -22,7 +22,14 @@
       "Bash(npm run:*)",
       "Read(//c/Users/User/Desktop/pms-platform/**)",
       "Bash(npm init:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(./test-deployment.sh:*)",
+      "Bash(./setup-k3s-local.sh:*)",
+      "Bash(./dev-local.sh:*)",
+      "Bash(make:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(timeout 10s npm run dev)"
     ],
     "deny": [],
     "ask": []

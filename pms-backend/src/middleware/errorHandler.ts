@@ -35,7 +35,7 @@ export const errorHandler = (
   }
 
   // Don't leak error details in production
-  res.status(500).json({
+  return res.status(500).json({
     success: false,
     message: 'Something went wrong!'
   });

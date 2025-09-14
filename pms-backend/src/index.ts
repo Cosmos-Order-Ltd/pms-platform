@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({
     status: 'OK',
     timestamp: new Date().toISOString(),
@@ -55,7 +55,7 @@ app.use('/api/v1/system', systemRoutes);
 app.use(errorHandler);
 
 // 404 handler
-app.use('*', (req, res) => {
+app.use('*', (_req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found'
