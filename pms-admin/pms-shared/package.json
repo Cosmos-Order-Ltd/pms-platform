@@ -1,0 +1,22 @@
+{
+  "name": "@pms/shared",
+  "version": "1.0.0",
+  "description": "Shared types and utilities for PMS platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rimraf dist"
+  },
+  "keywords": ["pms", "shared", "types"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "rimraf": "^5.0.1"
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}
