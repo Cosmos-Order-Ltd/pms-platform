@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       name,
       type,
       location,
-      rooms: parseInt(rooms),
+      rooms,
       isActive: true,
       managedBy,
       settings: {
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json() as { name: string; type: string; location: string; rooms: number; managedBy: string; settings?: any }
+    const body = await request.json() as { id?: string; action?: string; name?: string; type?: string; location?: string; rooms?: number; managedBy?: string; settings?: any }
     const { id, action, ...updateData } = body
 
     const propertyIndex = properties.findIndex(prop => prop.id === id)
@@ -97,22 +97,28 @@ export async function PUT(request: NextRequest) {
     }
 
     if (action === 'toggle-status') {
-      properties[propertyIndex].isActive = !properties[propertyIndex].isActive
-      return NextResponse.json({
-        success: true,
-        message: `Property ${properties[propertyIndex].isActive ? 'enabled' : 'disabled'} successfully`,
-        data: properties[propertyIndex]
-      })
+      const property = properties[propertyIndex]
+      if (property) {
+        property.isActive = !property.isActive
+        return NextResponse.json({
+          success: true,
+          message: `Property ${property.isActive ? 'enabled' : 'disabled'} successfully`,
+          data: property
+        })
+      }
     }
 
     // Update property data
-    properties[propertyIndex] = { ...properties[propertyIndex], ...updateData }
+    const existingProperty = properties[propertyIndex]
+    if (existingProperty) {
+      properties[propertyIndex] = { ...existingProperty, ...updateData }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Property updated successfully',
-      data: properties[propertyIndex]
-    })
+      return NextResponse.json({
+        success: true,
+        message: 'Property updated successfully',
+        data: properties[propertyIndex]
+      })
+    }
 
   } catch (error) {
     console.error('Property update error:', error)

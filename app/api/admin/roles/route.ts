@@ -37,7 +37,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { name: string; description: string; permissions: string[] }
     const { name, description, permissions = [] } = body
 
     const newRole = {
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { id?: string; name?: string; description?: string; permissions?: string[] }
     const { id, ...updateData } = body
 
     const roleIndex = roles.findIndex(role => role.id === id)
@@ -79,14 +79,17 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    if (roles[roleIndex].isSystemRole) {
+    const role = roles[roleIndex]
+    if (role?.isSystemRole) {
       return NextResponse.json(
         { success: false, message: 'Cannot modify system roles' },
         { status: 403 }
       )
     }
 
-    roles[roleIndex] = { ...roles[roleIndex], ...updateData }
+    if (role) {
+      roles[roleIndex] = { ...role, ...updateData }
+    }
 
     return NextResponse.json({
       success: true,
@@ -123,14 +126,15 @@ export async function DELETE(request: NextRequest) {
       )
     }
 
-    if (roles[roleIndex].isSystemRole) {
+    const roleToDelete = roles[roleIndex]
+    if (roleToDelete?.isSystemRole) {
       return NextResponse.json(
         { success: false, message: 'Cannot delete system roles' },
         { status: 403 }
       )
     }
 
-    if (roles[roleIndex].userCount > 0) {
+    if (roleToDelete && roleToDelete.userCount > 0) {
       return NextResponse.json(
         { success: false, message: 'Cannot delete role with assigned users' },
         { status: 409 }

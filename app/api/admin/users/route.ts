@@ -37,7 +37,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { name: string; email: string; role: string; department: string; permissions: string[]; properties: string[] }
     const { name, email, role, department, permissions = [], properties = [] } = body
 
     const newUser = {
@@ -47,8 +47,8 @@ export async function POST(request: NextRequest) {
       role,
       department,
       isActive: true,
-      lastLogin: null,
-      createdAt: new Date().toISOString().split('T')[0],
+      lastLogin: 'Never',
+      createdAt: new Date().toISOString().split('T')[0] || new Date().toDateString(),
       permissions,
       properties
     }
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { id?: string; action?: string; name?: string; email?: string; role?: string; department?: string; permissions?: string[]; properties?: string[] }
     const { id, action, ...updateData } = body
 
     const userIndex = users.findIndex(user => user.id === id)
@@ -84,22 +84,28 @@ export async function PUT(request: NextRequest) {
     }
 
     if (action === 'toggle-status') {
-      users[userIndex].isActive = !users[userIndex].isActive
-      return NextResponse.json({
-        success: true,
-        message: `User ${users[userIndex].isActive ? 'enabled' : 'disabled'} successfully`,
-        data: users[userIndex]
-      })
+      const user = users[userIndex]
+      if (user) {
+        user.isActive = !user.isActive
+        return NextResponse.json({
+          success: true,
+          message: `User ${user.isActive ? 'enabled' : 'disabled'} successfully`,
+          data: user
+        })
+      }
     }
 
     // Update user data
-    users[userIndex] = { ...users[userIndex], ...updateData }
+    const existingUser = users[userIndex]
+    if (existingUser) {
+      users[userIndex] = { ...existingUser, ...updateData }
 
-    return NextResponse.json({
-      success: true,
-      message: 'User updated successfully',
-      data: users[userIndex]
-    })
+      return NextResponse.json({
+        success: true,
+        message: 'User updated successfully',
+        data: users[userIndex]
+      })
+    }
 
   } catch (error) {
     console.error('User update error:', error)
