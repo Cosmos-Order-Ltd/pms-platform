@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(curl:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm exec playwright test:*)",
+      "Bash(timeout 10 pnpm dev)",
+      "Bash(pnpm exec:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
