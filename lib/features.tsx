@@ -1,16 +1,16 @@
 import {
-  CalendarIcon,
   BuildingOfficeIcon,
-  UserGroupIcon,
+  CalendarIcon,
   ChartBarIcon,
+  ChatBubbleLeftRightIcon,
+  ClockIcon,
+  CogIcon,
   CurrencyEuroIcon,
   DevicePhoneMobileIcon,
-  ClockIcon,
-  ShieldCheckIcon,
-  GlobeAltIcon,
   DocumentTextIcon,
-  ChatBubbleLeftRightIcon,
-  CogIcon,
+  GlobeAltIcon,
+  ShieldCheckIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/outline"
 
 export const PMS_FEATURES = [

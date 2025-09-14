@@ -1,7 +1,45 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+interface RateLimit {
+  requests: number
+  window: string
+}
+
+interface ApiKey {
+  id: string
+  name: string
+  key: string
+  description: string
+  permissions: string[]
+  rateLimit: RateLimit
+  isActive: boolean
+  createdAt: string
+  lastUsed: string
+  totalRequests: number
+  owner: string
+  expiresAt: string
+}
+
+interface CreateApiKeyRequest {
+  name: string
+  description: string
+  permissions?: string[]
+  owner: string
+  expiresAt: string
+}
+
+interface UpdateApiKeyRequest {
+  id: string
+  action?: string
+  name?: string
+  description?: string
+  permissions?: string[]
+  owner?: string
+  expiresAt?: string
+}
+
 // Mock API keys data store
-const apiKeys = [
+const apiKeys: ApiKey[] = [
   {
     id: 'key-001',
     name: 'Channel Manager Integration',
@@ -44,7 +82,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json() as any
+    const body = await request.json() as CreateApiKeyRequest
     const { name, description, permissions = [], owner, expiresAt } = body
 
     // Generate a new API key
@@ -58,8 +96,8 @@ export async function POST(request: NextRequest) {
       permissions,
       rateLimit: { requests: 100, window: 'hour' },
       isActive: true,
-      createdAt: new Date().toISOString().split('T')[0],
-      lastUsed: null,
+      createdAt: new Date().toISOString().split('T')[0] || new Date().toDateString(),
+      lastUsed: 'Never',
       totalRequests: 0,
       owner,
       expiresAt
@@ -84,7 +122,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json() as any
+    const body = await request.json() as UpdateApiKeyRequest
     const { id, action, ...updateData } = body
 
     const keyIndex = apiKeys.findIndex(key => key.id === id)
@@ -96,35 +134,44 @@ export async function PUT(request: NextRequest) {
     }
 
     if (action === 'toggle-status') {
-      apiKeys[keyIndex].isActive = !apiKeys[keyIndex].isActive
-      return NextResponse.json({
-        success: true,
-        message: `API key ${apiKeys[keyIndex].isActive ? 'enabled' : 'disabled'} successfully`,
-        data: apiKeys[keyIndex]
-      })
+      const apiKey = apiKeys[keyIndex]
+      if (apiKey) {
+        apiKey.isActive = !apiKey.isActive
+        return NextResponse.json({
+          success: true,
+          message: `API key ${apiKey.isActive ? 'enabled' : 'disabled'} successfully`,
+          data: apiKey
+        })
+      }
     }
 
     if (action === 'regenerate') {
-      const newKey = `pms_live_sk_${Math.random().toString(36).substring(2, 18)}${Date.now().toString(36)}`
-      apiKeys[keyIndex].key = newKey
-      apiKeys[keyIndex].totalRequests = 0
-      apiKeys[keyIndex].lastUsed = null
+      const apiKey = apiKeys[keyIndex]
+      if (apiKey) {
+        const newKey = `pms_live_sk_${Math.random().toString(36).substring(2, 18)}${Date.now().toString(36)}`
+        apiKey.key = newKey
+        apiKey.totalRequests = 0
+        apiKey.lastUsed = 'Never'
 
-      return NextResponse.json({
-        success: true,
-        message: 'API key regenerated successfully',
-        data: apiKeys[keyIndex]
-      })
+        return NextResponse.json({
+          success: true,
+          message: 'API key regenerated successfully',
+          data: apiKey
+        })
+      }
     }
 
     // Update API key data
-    apiKeys[keyIndex] = { ...apiKeys[keyIndex], ...updateData }
+    const apiKey = apiKeys[keyIndex]
+    if (apiKey) {
+      apiKeys[keyIndex] = { ...apiKey, ...updateData }
 
-    return NextResponse.json({
-      success: true,
-      message: 'API key updated successfully',
-      data: apiKeys[keyIndex]
-    })
+      return NextResponse.json({
+        success: true,
+        message: 'API key updated successfully',
+        data: apiKeys[keyIndex]
+      })
+    }
 
   } catch (error) {
     console.error('API key update error:', error)

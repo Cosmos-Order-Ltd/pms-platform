@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function SignInPage() {
@@ -36,7 +36,7 @@ export default function SignInPage() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { error?: string; message?: string; success?: boolean; redirectTo?: string };
 
       if (!response.ok) {
         throw new Error(data.error || 'Sign in failed');

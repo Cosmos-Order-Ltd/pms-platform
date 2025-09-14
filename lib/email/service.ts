@@ -1,4 +1,39 @@
-import { Reservation, Guest } from '@/types/pms'
+
+interface Guest {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  phone?: string
+  nationality?: string
+  isNewGuest: boolean
+  preferences?: GuestPreferences
+  loyaltyTier?: string
+}
+
+interface GuestPreferences {
+  bedType?: string
+  floor?: string
+  view?: string
+  accessibility?: boolean
+  quietRoom?: boolean
+  smokingRoom?: boolean
+}
+
+interface Reservation {
+  id: string
+  guestId: string
+  checkIn: string
+  checkOut: string
+  roomNumber?: string
+  roomType: string
+  adults: number
+  children: number
+  totalAmount: number
+  specialRequests?: string
+  status: 'confirmed' | 'checked_in' | 'checked_out' | 'cancelled'
+  datesChanged?: boolean
+}
 
 export interface EmailTemplate {
   subject: string
@@ -23,27 +58,27 @@ export class EmailService {
     return EmailService.instance
   }
 
-  async sendReservationConfirmation(reservation: any, guest: any): Promise<boolean> {
+  async sendReservationConfirmation(reservation: Reservation, guest: Guest): Promise<boolean> {
     const template = this.getReservationConfirmationTemplate(reservation, guest)
     return this.sendEmail(guest.email, template)
   }
 
-  async sendReservationModification(reservation: any, guest: any): Promise<boolean> {
+  async sendReservationModification(reservation: Reservation, guest: Guest): Promise<boolean> {
     const template = this.getReservationModificationTemplate(reservation, guest)
     return this.sendEmail(guest.email, template)
   }
 
-  async sendCheckInReminder(reservation: any, guest: any): Promise<boolean> {
+  async sendCheckInReminder(reservation: Reservation, guest: Guest): Promise<boolean> {
     const template = this.getCheckInReminderTemplate(reservation, guest)
     return this.sendEmail(guest.email, template)
   }
 
-  async sendCheckOutInstructions(reservation: any, guest: any): Promise<boolean> {
+  async sendCheckOutInstructions(reservation: Reservation, guest: Guest): Promise<boolean> {
     const template = this.getCheckOutInstructionsTemplate(reservation, guest)
     return this.sendEmail(guest.email, template)
   }
 
-  async sendWelcomeEmail(guest: any): Promise<boolean> {
+  async sendWelcomeEmail(guest: Guest): Promise<boolean> {
     const template = this.getWelcomeEmailTemplate(guest)
     return this.sendEmail(guest.email, template)
   }
@@ -66,7 +101,7 @@ export class EmailService {
     }
   }
 
-  private getReservationConfirmationTemplate(reservation: any, guest: any): EmailTemplate {
+  private getReservationConfirmationTemplate(reservation: Reservation, guest: Guest): EmailTemplate {
     const checkInDate = new Date(reservation.checkIn).toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
@@ -189,7 +224,7 @@ We look forward to welcoming you to Cyprus.
     return { subject, html, text }
   }
 
-  private getReservationModificationTemplate(reservation: any, guest: any): EmailTemplate {
+  private getReservationModificationTemplate(reservation: Reservation, guest: Guest): EmailTemplate {
     const subject = `Reservation Updated - Cyprus PMS (${reservation.id})`
 
     const html = `
@@ -258,7 +293,7 @@ Contact: reservations@cyprus-pms.com | +357 22 123456
     return { subject, html, text }
   }
 
-  private getCheckInReminderTemplate(reservation: any, guest: any): EmailTemplate {
+  private getCheckInReminderTemplate(reservation: Reservation, guest: Guest): EmailTemplate {
     const subject = `Check-in Reminder - Cyprus PMS (${reservation.id})`
 
     const html = `
@@ -335,7 +370,7 @@ Contact: +357 22 123456
     return { subject, html, text }
   }
 
-  private getCheckOutInstructionsTemplate(reservation: any, guest: any): EmailTemplate {
+  private getCheckOutInstructionsTemplate(reservation: Reservation, guest: Guest): EmailTemplate {
     const subject = `Check-out Instructions - Cyprus PMS (${reservation.id})`
 
     const html = `
@@ -414,7 +449,7 @@ Safe travels from all of us at Cyprus PMS!
     return { subject, html, text }
   }
 
-  private getWelcomeEmailTemplate(guest: any): EmailTemplate {
+  private getWelcomeEmailTemplate(guest: Guest): EmailTemplate {
     const subject = `Welcome to Cyprus PMS - ${guest.firstName}!`
 
     const html = `

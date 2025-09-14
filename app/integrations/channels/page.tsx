@@ -44,7 +44,7 @@ interface RateMapping {
 
 export default function ChannelManagerPage() {
   const [activeTab, setActiveTab] = useState('overview')
-  const [selectedChannel, setSelectedChannel] = useState('')
+  const [_selectedChannel, _setSelectedChannel] = useState('')
 
   const channels: ChannelConnection[] = [
     {
@@ -269,7 +269,7 @@ export default function ChannelManagerPage() {
     }
   }
 
-  const getSyncStatusColor = (status: string): string => {
+  const _getSyncStatusColor = (status: string): string => {
     switch (status) {
       case 'success': return 'text-green-600'
       case 'failed': return 'text-red-600'

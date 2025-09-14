@@ -1,7 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+interface RetryPolicy {
+  maxRetries: number
+  backoffStrategy: string
+}
+
+interface Webhook {
+  id: string
+  name: string
+  url: string
+  events: string[]
+  isActive: boolean
+  secret: string
+  retryPolicy: RetryPolicy
+  lastTriggered: string
+  successRate: number
+  totalDeliveries: number
+}
+
+interface CreateWebhookRequest {
+  name?: string
+  url?: string
+  events?: string[]
+  retryPolicy?: RetryPolicy
+}
+
+interface UpdateWebhookRequest {
+  id?: string
+  action?: string
+  name?: string
+  url?: string
+  events?: string[]
+  retryPolicy?: RetryPolicy
+}
+
 // Mock webhooks data store
-const webhooks = [
+const webhooks: Webhook[] = [
   {
     id: 'wh-001',
     name: 'Payment Notifications',
@@ -37,7 +71,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as CreateWebhookRequest
     const { name, url, events = [], retryPolicy = { maxRetries: 3, backoffStrategy: 'exponential' } } = body
 
     // Generate webhook secret
@@ -45,13 +79,13 @@ export async function POST(request: NextRequest) {
 
     const newWebhook = {
       id: `wh-${Date.now()}`,
-      name,
-      url,
+      name: name || 'Unnamed Webhook',
+      url: url || '',
       events,
       isActive: true,
       secret,
       retryPolicy,
-      lastTriggered: null,
+      lastTriggered: '',
       successRate: 0,
       totalDeliveries: 0
     }
@@ -75,7 +109,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as UpdateWebhookRequest
     const { id, action, ...updateData } = body
 
     const webhookIndex = webhooks.findIndex(webhook => webhook.id === id)
@@ -87,42 +121,51 @@ export async function PUT(request: NextRequest) {
     }
 
     if (action === 'toggle-status') {
-      webhooks[webhookIndex].isActive = !webhooks[webhookIndex].isActive
-      return NextResponse.json({
-        success: true,
-        message: `Webhook ${webhooks[webhookIndex].isActive ? 'enabled' : 'disabled'} successfully`,
-        data: webhooks[webhookIndex]
-      })
+      const webhook = webhooks[webhookIndex]
+      if (webhook) {
+        webhook.isActive = !webhook.isActive
+        return NextResponse.json({
+          success: true,
+          message: `Webhook ${webhook.isActive ? 'enabled' : 'disabled'} successfully`,
+          data: webhook
+        })
+      }
     }
 
     if (action === 'test') {
-      // Simulate webhook test
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      const webhook = webhooks[webhookIndex]
+      if (webhook) {
+        // Simulate webhook test
+        await new Promise(resolve => setTimeout(resolve, 2000))
 
-      webhooks[webhookIndex].lastTriggered = new Date().toISOString().split('T').join(' ').slice(0, 16)
+        webhook.lastTriggered = new Date().toISOString().split('T').join(' ').slice(0, 16)
 
-      return NextResponse.json({
-        success: true,
-        message: 'Webhook test completed successfully',
-        data: {
-          testResult: {
-            status: 'success',
-            responseTime: '245ms',
-            statusCode: 200,
-            timestamp: webhooks[webhookIndex].lastTriggered
+        return NextResponse.json({
+          success: true,
+          message: 'Webhook test completed successfully',
+          data: {
+            testResult: {
+              status: 'success',
+              responseTime: '245ms',
+              statusCode: 200,
+              timestamp: webhook.lastTriggered
+            }
           }
-        }
-      })
+        })
+      }
     }
 
     // Update webhook data
-    webhooks[webhookIndex] = { ...webhooks[webhookIndex], ...updateData }
+    const webhook = webhooks[webhookIndex]
+    if (webhook) {
+      webhooks[webhookIndex] = { ...webhook, ...updateData }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Webhook updated successfully',
-      data: webhooks[webhookIndex]
-    })
+      return NextResponse.json({
+        success: true,
+        message: 'Webhook updated successfully',
+        data: webhooks[webhookIndex]
+      })
+    }
 
   } catch (error) {
     console.error('Webhook update error:', error)

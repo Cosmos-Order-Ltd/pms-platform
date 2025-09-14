@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = await request.json() as { email?: string; password?: string; rememberMe?: boolean };
     const { email, password, rememberMe } = body;
 
     // Validate required fields

@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const router = useRouter();
+  const _router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,13 +24,13 @@ export default function ForgotPasswordPage() {
         body: JSON.stringify({ email }),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { error?: string; message?: string };
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to send reset email');
       }
 
-      toast.success(data.message);
+      toast.success(data.message || 'Reset email sent successfully');
       setIsSubmitted(true);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'An error occurred');

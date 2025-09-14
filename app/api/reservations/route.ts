@@ -1,8 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+interface GuestPreferences {
+  bedType?: 'king' | 'queen' | 'twin';
+  floor?: 'low' | 'high';
+  view?: 'sea' | 'garden' | 'city';
+  accessibility?: boolean;
+  quietRoom?: boolean;
+  smokingRoom?: boolean;
+}
+
+interface CreateReservationRequest {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  nationality?: string;
+  checkIn?: string;
+  checkOut?: string;
+  adults?: number;
+  children?: number;
+  roomType?: string;
+  selectedRoom?: string;
+  specialRequests?: string;
+  preferences?: GuestPreferences;
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = await request.json() as CreateReservationRequest;
     const {
       firstName,
       lastName,
@@ -68,7 +93,7 @@ export async function POST(request: NextRequest) {
 
     const baseRate = roomRates[roomType as keyof typeof roomRates] || 0;
     const roomTotal = baseRate * nights;
-    const tourismTax = 1.50 * parseInt(adults) * nights; // Cyprus Tourism Tax
+    const tourismTax = 1.50 * (adults || 0) * nights; // Cyprus Tourism Tax
     const vat = (roomTotal + tourismTax) * 0.19; // Cyprus VAT
     const total = roomTotal + tourismTax + vat;
 
@@ -81,8 +106,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate guest counts
-    const adultsCount = parseInt(adults);
-    const childrenCount = parseInt(children || '0');
+    const adultsCount = adults || 0;
+    const childrenCount = children || 0;
 
     if (adultsCount < 1 || adultsCount > 4) {
       return NextResponse.json(

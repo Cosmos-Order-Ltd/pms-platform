@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { exportType?: string; timeHorizon?: string; format?: string }
     const { exportType, timeHorizon = '30d', format = 'excel' } = body
 
     // Simulate forecast data generation

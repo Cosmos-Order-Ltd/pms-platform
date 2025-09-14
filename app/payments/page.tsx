@@ -2,6 +2,15 @@
 
 import React, { useState } from 'react'
 
+interface PaymentMethodConfig {
+  apiKey?: string
+  secretKey?: string
+  webhookUrl?: string
+  merchantId?: string
+  sandboxMode?: boolean
+  customSettings?: Record<string, unknown>
+}
+
 interface PaymentMethod {
   id: string
   name: string
@@ -11,7 +20,7 @@ interface PaymentMethod {
   processingFee: number
   currencies: string[]
   icon: string
-  config: any
+  config: PaymentMethodConfig
 }
 
 interface Transaction {

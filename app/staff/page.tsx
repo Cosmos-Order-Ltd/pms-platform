@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Metadata } from "next"
 
 interface StaffMember {
   id: string
@@ -27,7 +26,7 @@ interface Shift {
   maxCapacity: number
 }
 
-interface Schedule {
+interface _Schedule {
   date: string
   staffId: string
   shiftId: string
@@ -427,7 +426,7 @@ export default function StaffPage() {
                     ← Previous Week
                   </button>
                   <span className="font-medium text-gray-900 dark:text-white">
-                    {weekDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {weekDates[6].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    {weekDates[0]?.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {weekDates[6]?.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </span>
                   <button
                     onClick={() => setSelectedWeek(new Date(selectedWeek.getTime() + 7 * 24 * 60 * 60 * 1000))}

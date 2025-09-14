@@ -2,23 +2,51 @@
 
 import React, { useState } from 'react'
 
+interface AutomationCondition {
+  field: string
+  operator: 'equals' | 'not_equals' | 'greater_than' | 'less_than' | 'contains' | 'not_contains'
+  value: string | number | boolean
+}
+
+interface AutomationTrigger {
+  event: string
+  conditions: AutomationCondition[]
+}
+
+interface AutomationActionConfig {
+  email?: {
+    template: string
+    recipients: string[]
+    subject?: string
+  }
+  notification?: {
+    message: string
+    channels: string[]
+  }
+  task?: {
+    title: string
+    assignee: string
+    priority: 'low' | 'medium' | 'high'
+  }
+  pricing?: {
+    adjustment: number
+    type: 'percentage' | 'fixed'
+  }
+  [key: string]: unknown
+}
+
+interface AutomationAction {
+  type: 'send_email' | 'send_notification' | 'create_task' | 'update_pricing' | 'custom'
+  config: AutomationActionConfig
+}
+
 interface AutomationRule {
   id: string
   name: string
   description: string
   category: 'communication' | 'pricing' | 'operations' | 'marketing' | 'maintenance'
-  trigger: {
-    event: string
-    conditions: {
-      field: string
-      operator: string
-      value: any
-    }[]
-  }
-  actions: {
-    type: string
-    config: any
-  }[]
+  trigger: AutomationTrigger
+  actions: AutomationAction[]
   isActive: boolean
   priority: number
   lastExecuted?: string
@@ -32,8 +60,8 @@ interface AutomationTemplate {
   name: string
   description: string
   category: string
-  trigger: any
-  actions: any[]
+  trigger: AutomationTrigger
+  actions: AutomationAction[]
   popularity: number
 }
 
@@ -52,7 +80,7 @@ interface AutomationLog {
 export default function AutomationPage() {
   const [activeTab, setActiveTab] = useState('rules')
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [_showCreateModal, _setShowCreateModal] = useState(false)
 
   const automationRules: AutomationRule[] = [
     {

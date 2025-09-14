@@ -75,8 +75,8 @@ interface SystemHealth {
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState('users')
-  const [selectedUser, setSelectedUser] = useState<string | null>(null)
-  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [_selectedUser, _setSelectedUser] = useState<string | null>(null)
+  const [_showCreateModal, _setShowCreateModal] = useState(false)
 
   const handleAddUser = () => {
     toast.loading('Opening user creation form...')
@@ -195,7 +195,7 @@ export default function AdminPage() {
       } else {
         toast.error('Failed to export audit logs', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error exporting audit logs', { id: toastId })
     }
   }
@@ -217,7 +217,7 @@ export default function AdminPage() {
       } else {
         toast.error('Failed to refresh system health', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error refreshing system health', { id: toastId })
     }
   }

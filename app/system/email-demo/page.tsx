@@ -1,22 +1,42 @@
 "use client"
 
 import { useState } from "react"
-import { Metadata } from "next"
+
+interface DemoReservation {
+  id: string
+  checkIn: string
+  checkOut: string
+  roomType: string
+  roomNumber: string
+  adults: number
+  children: number
+  totalAmount: number
+  specialRequests: string
+}
+
+interface DemoGuest {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  nationality: string
+  isNewGuest: boolean
+}
 
 // This would typically come from your actual email service
 const demoEmailService = {
-  async sendReservationConfirmation(reservation: any, guest: any) {
+  async sendReservationConfirmation(reservation: DemoReservation, guest: DemoGuest) {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000))
     console.log(`📧 Confirmation email sent to ${guest.email}`)
     return true
   },
-  async sendCheckInReminder(reservation: any, guest: any) {
+  async sendCheckInReminder(reservation: DemoReservation, guest: DemoGuest) {
     await new Promise(resolve => setTimeout(resolve, 1000))
     console.log(`📧 Check-in reminder sent to ${guest.email}`)
     return true
   },
-  async sendWelcomeEmail(guest: any) {
+  async sendWelcomeEmail(guest: DemoGuest) {
     await new Promise(resolve => setTimeout(resolve, 1000))
     console.log(`📧 Welcome email sent to ${guest.email}`)
     return true
@@ -26,7 +46,7 @@ const demoEmailService = {
 export default function EmailDemoPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [emailLogs, setEmailLogs] = useState<string[]>([])
-  const [selectedTemplate, setSelectedTemplate] = useState('confirmation')
+  const [_selectedTemplate, _setSelectedTemplate] = useState('confirmation')
 
   const mockReservation = {
     id: "RSV-DEMO-001",

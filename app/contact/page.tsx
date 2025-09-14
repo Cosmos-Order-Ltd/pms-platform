@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
 import Link from 'next/link';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function ContactPage() {
@@ -39,7 +39,7 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { success?: boolean; message?: string; error?: string };
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to submit contact form');

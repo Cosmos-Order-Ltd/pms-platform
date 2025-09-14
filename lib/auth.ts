@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import GoogleProvider from "next-auth/providers/google"
 import EmailProvider from "next-auth/providers/email"
+import GoogleProvider from "next-auth/providers/google"
 import { prisma } from "./prisma"
 
 export const authOptions: NextAuthOptions = {
@@ -45,10 +45,10 @@ export const authOptions: NextAuthOptions = {
 
         session.user.id = user.id
         session.user.role = dbUser?.role || "GUEST"
-        session.user.organizationId = dbUser?.organizationId
-        session.user.organization = dbUser?.organization
-        session.user.guestProfile = dbUser?.guestProfile
-        session.user.staffProfile = dbUser?.staffProfile
+        session.user.organizationId = dbUser?.organizationId || undefined
+        session.user.organization = dbUser?.organization || undefined
+        session.user.guestProfile = dbUser?.guestProfile || undefined
+        session.user.staffProfile = dbUser?.staffProfile || undefined
       }
       return session
     },

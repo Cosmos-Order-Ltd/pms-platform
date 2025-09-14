@@ -1,8 +1,7 @@
 'use client';
 
-import { Metadata } from "next"
-import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import toast, { Toaster } from 'react-hot-toast';
 
 // Note: Metadata export removed due to 'use client' directive
@@ -68,7 +67,7 @@ export default function NewReservationPage() {
     }));
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const _handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -91,7 +90,7 @@ export default function NewReservationPage() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { success?: boolean; message?: string; error?: string; reservation?: unknown };
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to create reservation');
@@ -109,7 +108,7 @@ export default function NewReservationPage() {
     }
   };
 
-  const availableRooms = [
+  const _availableRooms = [
     { number: "101", type: "STANDARD", status: "available", rate: 80 },
     { number: "205", type: "DELUXE", status: "available", rate: 120 },
     { number: "310", type: "SUITE", status: "occupied", rate: 200 },

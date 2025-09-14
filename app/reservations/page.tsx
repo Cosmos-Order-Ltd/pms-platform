@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 import toast, { Toaster } from 'react-hot-toast'
 
 interface Reservation {
@@ -61,7 +61,7 @@ export default function ReservationsPage() {
   const router = useRouter()
 
   const handleEdit = (reservationId: string) => {
-    toast.info(`Editing reservation ${reservationId}`)
+    toast.success(`Editing reservation ${reservationId}`)
     // Navigate to edit page when implemented
   }
 
@@ -74,7 +74,7 @@ export default function ReservationsPage() {
 
   const handleMore = (reservationId: string) => {
     const reservation = reservations.find(r => r.id === reservationId)
-    toast.info(`${reservation?.guestName} - Room ${reservation?.roomNumber} - ${reservation?.adults + (reservation?.children || 0)} guests`)
+    toast.success(`${reservation?.guestName} - Room ${reservation?.roomNumber} - ${(reservation?.adults || 0) + (reservation?.children || 0)} guests`)
   }
 
   const navigateToNewReservation = () => {

@@ -1,5 +1,65 @@
 import { EmailService } from './service'
 
+interface Guest {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  phone?: string
+  nationality?: string
+  isNewGuest: boolean
+  preferences?: GuestPreferences
+  loyaltyTier?: string
+}
+
+interface GuestPreferences {
+  bedType?: string
+  floor?: string
+  view?: string
+  accessibility?: boolean
+  quietRoom?: boolean
+  smokingRoom?: boolean
+}
+
+interface Reservation {
+  id: string
+  guestId: string
+  checkIn: string
+  checkOut: string
+  roomNumber?: string
+  roomType: string
+  adults: number
+  children: number
+  totalAmount: number
+  specialRequests?: string
+  status: 'confirmed' | 'checked_in' | 'checked_out' | 'cancelled'
+  datesChanged?: boolean
+}
+
+interface EmailSchedule {
+  id: string
+  type: 'pre_arrival' | 'checkout_reminder' | 'post_stay_feedback' | 'loyalty_points'
+  reservationId: string
+  guestId: string
+  scheduledFor: string
+  sent: boolean
+}
+
+interface AutomationRule {
+  id: string
+  name: string
+  trigger: 'reservation_created' | 'reservation_modified' | 'check_in' | 'check_out'
+  conditions?: Record<string, unknown>
+  actions: AutomationAction[]
+  isActive: boolean
+}
+
+interface AutomationAction {
+  type: 'send_email' | 'schedule_email' | 'update_guest' | 'create_task'
+  config: Record<string, unknown>
+  delay?: number
+}
+
 export class EmailAutomation {
   private emailService: EmailService
 
@@ -7,7 +67,7 @@ export class EmailAutomation {
     this.emailService = EmailService.getInstance()
   }
 
-  async handleReservationCreated(reservation: any, guest: any): Promise<void> {
+  async handleReservationCreated(reservation: Reservation, guest: Guest): Promise<void> {
     try {
       // Send confirmation email immediately
       await this.emailService.sendReservationConfirmation(reservation, guest)
@@ -26,7 +86,7 @@ export class EmailAutomation {
     }
   }
 
-  async handleReservationModified(reservation: any, guest: any): Promise<void> {
+  async handleReservationModified(reservation: Reservation, guest: Guest): Promise<void> {
     try {
       // Send modification confirmation
       await this.emailService.sendReservationModification(reservation, guest)
@@ -42,7 +102,7 @@ export class EmailAutomation {
     }
   }
 
-  async handleCheckIn(reservation: any, guest: any): Promise<void> {
+  async handleCheckIn(reservation: Reservation, guest: Guest): Promise<void> {
     try {
       // Schedule check-out instructions for day before checkout
       this.scheduleCheckOutReminder(reservation, guest)
@@ -53,7 +113,7 @@ export class EmailAutomation {
     }
   }
 
-  async handleCheckOut(reservation: any, guest: any): Promise<void> {
+  async handleCheckOut(reservation: Reservation, guest: Guest): Promise<void> {
     try {
       // Send thank you email and request feedback
       await this.sendThankYouEmail(reservation, guest)
@@ -64,7 +124,7 @@ export class EmailAutomation {
     }
   }
 
-  private schedulePreArrivalReminder(reservation: any, guest: any): void {
+  private schedulePreArrivalReminder(reservation: Reservation, guest: Guest): void {
     const checkInDate = new Date(reservation.checkIn)
     const reminderDate = new Date(checkInDate.getTime() - 24 * 60 * 60 * 1000) // 24 hours before
 
@@ -80,7 +140,7 @@ export class EmailAutomation {
     }
   }
 
-  private scheduleCheckOutReminder(reservation: any, guest: any): void {
+  private scheduleCheckOutReminder(reservation: Reservation, guest: Guest): void {
     const checkOutDate = new Date(reservation.checkOut)
     const reminderDate = new Date(checkOutDate.getTime() - 24 * 60 * 60 * 1000) // 24 hours before
 
@@ -96,7 +156,7 @@ export class EmailAutomation {
     }
   }
 
-  private async sendThankYouEmail(reservation: any, guest: any): Promise<void> {
+  private async sendThankYouEmail(reservation: Reservation, guest: Guest): Promise<void> {
     const template = {
       subject: `Thank you for staying with Cyprus PMS - ${guest.firstName}!`,
       html: `
@@ -179,7 +239,7 @@ The Cyprus PMS Team
   }
 
   // Bulk operations for marketing and operational emails
-  async sendBulkEmails(guests: any[], template: 'newsletter' | 'promotion' | 'survey'): Promise<number> {
+  async sendBulkEmails(guests: Guest[], template: 'newsletter' | 'promotion' | 'survey'): Promise<number> {
     let successCount = 0
 
     for (const guest of guests) {
@@ -212,7 +272,7 @@ The Cyprus PMS Team
     return successCount
   }
 
-  private getNewsletterTemplate(guest: any) {
+  private getNewsletterTemplate(guest: Guest) {
     return {
       subject: "Cyprus PMS Monthly Newsletter - Discover What's New!",
       html: `
@@ -230,7 +290,7 @@ The Cyprus PMS Team
     }
   }
 
-  private getPromotionTemplate(guest: any) {
+  private getPromotionTemplate(guest: Guest) {
     return {
       subject: "🎉 Special Offer Just for You - 20% Off Your Next Stay!",
       html: `
@@ -243,7 +303,7 @@ The Cyprus PMS Team
     }
   }
 
-  private getSurveyTemplate(guest: any) {
+  private getSurveyTemplate(guest: Guest) {
     return {
       subject: "📝 Help Us Improve - Quick 2-Minute Survey",
       html: `
@@ -260,7 +320,7 @@ The Cyprus PMS Team
 // Utility functions for common email automation scenarios
 export const emailAutomation = new EmailAutomation()
 
-export async function triggerReservationEmails(reservation: any, guest: any, action: 'created' | 'modified' | 'checkin' | 'checkout') {
+export async function triggerReservationEmails(reservation: Reservation, guest: Guest, action: 'created' | 'modified' | 'checkin' | 'checkout') {
   switch (action) {
     case 'created':
       await emailAutomation.handleReservationCreated(reservation, guest)

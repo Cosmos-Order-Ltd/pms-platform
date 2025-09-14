@@ -355,7 +355,7 @@ export default function GuestsPage() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900 dark:text-white">
-                        {guest.visitHistory.length > 0
+                        {guest.visitHistory.length > 0 && guest.visitHistory[0]
                           ? new Date(guest.visitHistory[0].checkIn).toLocaleDateString()
                           : 'Never'
                         }

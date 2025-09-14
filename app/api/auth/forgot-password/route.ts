@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = await request.json() as { email?: string };
     const { email } = body;
 
     // Validate required fields
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     const resetToken = `reset_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
     // Simulate sending email (in production, integrate with email service)
-    const resetData = {
+    const _resetData = {
       email,
       resetToken,
       expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours

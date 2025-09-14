@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function SignUpPage() {
@@ -47,7 +47,7 @@ export default function SignUpPage() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { error?: string; message?: string; success?: boolean };
 
       if (!response.ok) {
         throw new Error(data.error || 'Registration failed');

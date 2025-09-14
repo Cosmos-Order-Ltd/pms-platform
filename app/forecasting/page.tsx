@@ -66,13 +66,13 @@ export default function ForecastingPage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string; error?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || 'Excel forecast generated successfully', { id: toastId })
       } else {
         toast.error('Failed to generate Excel forecast', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error generating Excel forecast', { id: toastId })
     }
   }
@@ -90,13 +90,13 @@ export default function ForecastingPage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string; error?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || 'Model configuration exported successfully', { id: toastId })
       } else {
         toast.error('Failed to export model configuration', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error exporting model configuration', { id: toastId })
     }
   }
@@ -114,13 +114,13 @@ export default function ForecastingPage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string; error?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || 'Scenario report generated successfully', { id: toastId })
       } else {
         toast.error('Failed to generate scenario report', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error generating scenario report', { id: toastId })
     }
   }

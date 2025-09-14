@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface ComplianceReport {
   id: string
@@ -84,13 +85,13 @@ export default function CompliancePage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || 'Compliance report generated successfully', { id: toastId })
       } else {
         toast.error('Failed to generate compliance report', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error generating compliance report', { id: toastId })
     }
   }
@@ -108,19 +109,19 @@ export default function CompliancePage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string; error?: string }
       if (data.success) {
         toast.success('Compliance audit completed successfully!', { id: toastId })
       } else {
         toast.error('Failed to complete compliance audit', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error running compliance audit', { id: toastId })
     }
   }
 
   const handleSettings = () => {
-    toast.info('Opening compliance settings panel...')
+    toast.success('Opening compliance settings panel...')
   }
 
   const handleExportTaxReport = async () => {
@@ -136,13 +137,13 @@ export default function CompliancePage() {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string; error?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || 'Tax report exported successfully', { id: toastId })
       } else {
         toast.error('Failed to export tax report', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error exporting tax report', { id: toastId })
     }
   }
@@ -159,11 +160,11 @@ export default function CompliancePage() {
   }
 
   const handleViewDocument = (docTitle: string) => {
-    toast.info(`Opening ${docTitle}...`)
+    toast.success(`Opening ${docTitle}...`)
   }
 
   const handleUploadDocument = () => {
-    toast.info('Document upload feature will open...')
+    toast.success('Document upload feature will open...')
   }
 
   const handleSubmitReport = (reportType: string) => {
@@ -771,7 +772,7 @@ export default function CompliancePage() {
 
                     <div className="flex justify-end gap-2 pt-4 border-t border-gray-100">
                       <button
-                        onClick={() => toast.info('Viewing report details...')}
+                        onClick={() => toast.success('Viewing report details...')}
                         className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
                       >
                         👁️ View
@@ -789,7 +790,7 @@ export default function CompliancePage() {
                         📤 Submit
                       </button>
                       <button
-                        onClick={() => toast.info('Opening report configuration...')}
+                        onClick={() => toast.success('Opening report configuration...')}
                         className="px-3 py-1 bg-gray-600 text-white rounded text-sm hover:bg-gray-700"
                       >
                         ⚙️ Configure
@@ -964,7 +965,7 @@ export default function CompliancePage() {
 
                     <div className="flex justify-end gap-2 pt-4 border-t border-gray-100">
                       <button
-                        onClick={() => toast.info('Viewing GDPR request details...')}
+                        onClick={() => toast.success('Viewing GDPR request details...')}
                         className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
                       >
                         👁️ View Details
@@ -986,7 +987,7 @@ export default function CompliancePage() {
                         </button>
                       )}
                       <button
-                        onClick={() => toast.info('Opening email composer...')}
+                        onClick={() => toast.success('Opening email composer...')}
                         className="px-3 py-1 bg-gray-600 text-white rounded text-sm hover:bg-gray-700"
                       >
                         📧 Contact Guest
@@ -1079,7 +1080,7 @@ export default function CompliancePage() {
                         👁️ View
                       </button>
                       <button
-                        onClick={() => toast.info('Opening document editor...')}
+                        onClick={() => toast.success('Opening document editor...')}
                         className="flex-1 px-3 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-sm"
                       >
                         ✏️ Edit

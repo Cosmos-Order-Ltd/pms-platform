@@ -165,7 +165,7 @@ export default function CommunicationsPage() {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as 'messages' | 'templates' | 'automation' | 'analytics')}
                 className={`flex items-center space-x-2 border-b-2 py-4 text-sm font-medium ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'

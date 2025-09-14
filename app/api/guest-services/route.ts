@@ -31,19 +31,20 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { type?: string; action?: string; guestId?: string; roomNumber?: string; details?: string }
     const { type, action, guestId = 'guest-001', roomNumber = '205', details } = body
 
     if (action === 'request-service') {
       const newRequest = {
         id: `SR-${Date.now()}`,
-        type,
-        title: `${type} request`,
+        type: type || 'General',
+        title: `${type || 'General'} request`,
         status: 'requested',
         requestedAt: new Date().toISOString().split('T').join(' ').slice(0, 16),
-        guestId,
-        roomNumber,
-        details
+        completedAt: '',
+        guestId: guestId || 'guest-001',
+        roomNumber: roomNumber || '205',
+        details: details || ''
       }
 
       serviceRequests.push(newRequest)

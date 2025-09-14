@@ -25,7 +25,7 @@ interface ReportTemplate {
   author: string
   config: {
     dataSource: string
-    filters: any[]
+    filters: FilterConfig[]
     groupBy: string[]
     metrics: string[]
     chartType: string
@@ -35,7 +35,7 @@ interface ReportTemplate {
 interface FilterConfig {
   field: string
   operator: string
-  value: any
+  value: string | number | boolean | Date
   type: 'string' | 'number' | 'date' | 'boolean'
 }
 
@@ -45,7 +45,7 @@ export default function ReportBuilderPage() {
   const [selectedFields, setSelectedFields] = useState<string[]>([])
   const [filters, setFilters] = useState<FilterConfig[]>([])
   const [groupBy, setGroupBy] = useState<string[]>([])
-  const [metrics, setMetrics] = useState<string[]>([])
+  const [_metrics, _setMetrics] = useState<string[]>([])
   const [chartType, setChartType] = useState('table')
   const [reportName, setReportName] = useState('')
   const [reportCategory, setReportCategory] = useState('custom')
@@ -224,7 +224,10 @@ export default function ReportBuilderPage() {
 
   const updateFilter = (index: number, updates: Partial<FilterConfig>) => {
     const newFilters = [...filters]
-    newFilters[index] = { ...newFilters[index], ...updates }
+    newFilters[index] = {
+      ...newFilters[index],
+      ...Object.fromEntries(Object.entries(updates).filter(([_, value]) => value !== undefined))
+    } as FilterConfig
     setFilters(newFilters)
   }
 
@@ -262,15 +265,17 @@ export default function ReportBuilderPage() {
 
   const nextStep = () => {
     const currentIndex = steps.findIndex(s => s.id === currentStep)
-    if (currentIndex < steps.length - 1) {
-      setCurrentStep(steps[currentIndex + 1].id)
+    const nextStepItem = steps[currentIndex + 1]
+    if (currentIndex < steps.length - 1 && nextStepItem) {
+      setCurrentStep(nextStepItem.id)
     }
   }
 
   const prevStep = () => {
     const currentIndex = steps.findIndex(s => s.id === currentStep)
-    if (currentIndex > 0) {
-      setCurrentStep(steps[currentIndex - 1].id)
+    const prevStepItem = steps[currentIndex - 1]
+    if (currentIndex > 0 && prevStepItem) {
+      setCurrentStep(prevStepItem.id)
     }
   }
 
@@ -415,7 +420,7 @@ export default function ReportBuilderPage() {
                         value={filter.field}
                         onChange={(e) => {
                           const fieldType = getFieldType(e.target.value)
-                          updateFilter(index, { field: e.target.value, type: fieldType as any })
+                          updateFilter(index, { field: e.target.value, type: fieldType as 'string' | 'number' | 'date' | 'boolean' })
                         }}
                         className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >

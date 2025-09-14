@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Metadata } from "next"
 
 interface Task {
   id: string
@@ -309,7 +308,7 @@ export default function TasksPage() {
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">View:</label>
               <select
                 value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value as any)}
+                onChange={(e) => setSelectedFilter(e.target.value as 'all' | 'my_tasks' | 'pending' | 'in_progress' | 'overdue')}
                 className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300"
               >
                 <option value="all">All Tasks</option>

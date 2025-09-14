@@ -1,7 +1,46 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+interface PropertySettings {
+  timezone?: string
+  currency?: string
+  language?: string
+  checkInTime?: string
+  checkOutTime?: string
+}
+
+interface Property {
+  id: string
+  name: string
+  type: string
+  location: string
+  rooms: number
+  isActive: boolean
+  managedBy: string
+  settings: PropertySettings
+}
+
+interface CreatePropertyRequest {
+  name: string
+  type: string
+  location: string
+  rooms: number
+  managedBy: string
+  settings?: PropertySettings
+}
+
+interface UpdatePropertyRequest {
+  id?: string
+  action?: string
+  name?: string
+  type?: string
+  location?: string
+  rooms?: number
+  managedBy?: string
+  settings?: PropertySettings
+}
+
 // Mock properties data store
-const properties = [
+const properties: Property[] = [
   {
     id: 'prop-001',
     name: 'Cyprus Grand Resort',
@@ -45,7 +84,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json() as { name: string; type: string; location: string; rooms: number; managedBy: string; settings?: any }
+    const body = await request.json() as CreatePropertyRequest
     const { name, type, location, rooms, managedBy, settings = {} } = body
 
     const newProperty = {
@@ -85,7 +124,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json() as { id?: string; action?: string; name?: string; type?: string; location?: string; rooms?: number; managedBy?: string; settings?: any }
+    const body = await request.json() as UpdatePropertyRequest
     const { id, action, ...updateData } = body
 
     const propertyIndex = properties.findIndex(prop => prop.id === id)

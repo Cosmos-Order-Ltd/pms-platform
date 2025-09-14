@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json() as { reportType?: string; dateRange?: string; format?: string }
     const { reportType, dateRange, format = 'pdf' } = body
 
     // Simulate report generation

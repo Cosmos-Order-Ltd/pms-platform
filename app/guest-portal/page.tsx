@@ -70,13 +70,13 @@ export default function GuestPortalPage({}: GuestPortalProps) {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string; error?: string }
       if (data.success) {
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || 'Digital key activated successfully', { id: toastId })
       } else {
         toast.error('Failed to activate digital key', { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error('Error activating digital key', { id: toastId })
     }
   }
@@ -100,7 +100,7 @@ export default function GuestPortalPage({}: GuestPortalProps) {
         })
       })
 
-      const data = await response.json()
+      const data = await response.json() as { success?: boolean; message?: string; error?: string; data?: unknown }
       if (data.success) {
         const newRequest: ServiceRequest = {
           id: data.data.id,
@@ -110,11 +110,11 @@ export default function GuestPortalPage({}: GuestPortalProps) {
           requestedAt: data.data.requestedAt
         }
         setServiceRequests([newRequest, ...serviceRequests])
-        toast.success(data.message, { id: toastId })
+        toast.success(data.message || 'Service request submitted successfully', { id: toastId })
       } else {
         toast.error(`Failed to submit ${serviceType} request`, { id: toastId })
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error(`Error submitting ${serviceType} request`, { id: toastId })
     }
   }
@@ -168,7 +168,7 @@ export default function GuestPortalPage({}: GuestPortalProps) {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as 'overview' | 'services' | 'billing' | 'profile')}
                 className={`flex items-center space-x-2 border-b-2 py-4 text-sm font-medium ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
@@ -406,7 +406,7 @@ export default function GuestPortalPage({}: GuestPortalProps) {
                   💳 Pay Now
                 </button>
                 <button
-                  onClick={() => toast.info('Receipt sent to your email!')}
+                  onClick={() => toast.success('Receipt sent to your email!')}
                   className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50"
                 >
                   📧 Email Receipt

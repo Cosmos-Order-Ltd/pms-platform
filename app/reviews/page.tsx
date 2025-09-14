@@ -248,7 +248,7 @@ export default function ReviewsPage() {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as 'reviews' | 'responses' | 'analytics' | 'insights')}
                 className={`flex items-center space-x-2 border-b-2 py-4 text-sm font-medium ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'

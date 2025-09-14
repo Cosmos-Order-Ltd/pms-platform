@@ -31,7 +31,7 @@ interface PaymentMethod {
 export default function FinancialReportsPage() {
   const [selectedReport, setSelectedReport] = useState<'summary' | 'daily' | 'monthly' | 'payments' | 'tax'>('summary')
   const [selectedPeriod, setSelectedPeriod] = useState('current-month')
-  const [selectedProperty, setSelectedProperty] = useState('all')
+  const [_selectedProperty, _setSelectedProperty] = useState('all')
 
   // Mock data
   const financialMetrics: FinancialMetric[] = [
@@ -173,7 +173,7 @@ export default function FinancialReportsPage() {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setSelectedReport(tab.id as any)}
+                onClick={() => setSelectedReport(tab.id as 'summary' | 'daily' | 'monthly' | 'payments' | 'tax')}
                 className={`flex items-center space-x-2 border-b-2 py-4 text-sm font-medium ${
                   selectedReport === tab.id
                     ? 'border-blue-500 text-blue-600'

@@ -382,7 +382,7 @@ export default function RoomsPage() {
                     )}
                   </div>
                   <button
-                    onClick={() => toast.info(`Room ${room.number} details: ${room.type} room with ${room.amenities.length} amenities`)}
+                    onClick={() => toast.success(`Room ${room.number} details: ${room.type} room with ${room.amenities.length} amenities`)}
                     className="text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
                   >
                     Details
@@ -410,7 +410,7 @@ export default function RoomsPage() {
             </button>
 
             <button
-              onClick={() => toast.info('Maintenance Report: 1 room needs AC repair, 2 rooms need bathroom fixtures')}
+              onClick={() => toast.success('Maintenance Report: 1 room needs AC repair, 2 rooms need bathroom fixtures')}
               className="flex flex-col items-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <span className="text-2xl mb-2">🔧</span>
@@ -418,7 +418,7 @@ export default function RoomsPage() {
             </button>
 
             <button
-              onClick={() => toast.info(`Occupancy Report: ${occupiedRooms}/${rooms.length} rooms occupied (${Math.round(occupiedRooms/rooms.length * 100)}%)`)}
+              onClick={() => toast.success(`Occupancy Report: ${occupiedRooms}/${rooms.length} rooms occupied (${Math.round(occupiedRooms/rooms.length * 100)}%)`)}
               className="flex flex-col items-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <span className="text-2xl mb-2">📊</span>

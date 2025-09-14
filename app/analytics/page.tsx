@@ -170,7 +170,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center space-x-4">
               <select
                 value={selectedPeriod}
-                onChange={(e) => setSelectedPeriod(e.target.value as any)}
+                onChange={(e) => setSelectedPeriod(e.target.value as 'today' | 'week' | 'month' | 'quarter' | 'year')}
                 className="rounded-lg border border-gray-300 px-4 py-2"
               >
                 <option value="today">Today</option>
