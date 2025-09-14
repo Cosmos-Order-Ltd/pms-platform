@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Mock properties data store
-let properties = [
+const properties = [
   {
     id: 'prop-001',
     name: 'Cyprus Grand Resort',

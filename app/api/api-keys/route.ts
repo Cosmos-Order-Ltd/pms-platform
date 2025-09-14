@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Mock API keys data store
-let apiKeys = [
+const apiKeys = [
   {
     id: 'key-001',
     name: 'Channel Manager Integration',

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface GuestPortalProps {}
 
 interface ServiceRequest {

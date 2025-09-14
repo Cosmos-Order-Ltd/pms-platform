@@ -1147,7 +1147,7 @@ export default function CompliancePage() {
                   <div className="text-2xl font-bold text-purple-600">
                     {complianceMetrics.filter(m => (m.score / m.maxScore) >= 0.95).length}
                   </div>
-                  <div className="text-sm text-gray-600">Areas > 95%</div>
+                  <div className="text-sm text-gray-600">Areas &gt; 95%</div>
                 </div>
                 <div className="bg-orange-50 rounded-lg p-4 text-center">
                   <div className="text-2xl font-bold text-orange-600">Q1 2025</div>

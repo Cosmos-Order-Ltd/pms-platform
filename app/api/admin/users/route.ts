@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Mock user data store
-let users = [
+const users = [
   {
     id: 'user-001',
     name: 'Andreas Georgiou',

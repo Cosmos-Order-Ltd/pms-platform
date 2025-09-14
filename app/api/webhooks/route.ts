@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Mock webhooks data store
-let webhooks = [
+const webhooks = [
   {
     id: 'wh-001',
     name: 'Payment Notifications',

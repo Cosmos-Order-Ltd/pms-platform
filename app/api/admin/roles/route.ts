@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Mock roles data store
-let roles = [
+const roles = [
   {
     id: 'role-001',
     name: 'System Administrator',

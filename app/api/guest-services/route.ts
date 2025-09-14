@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Mock service requests data store
-let serviceRequests = [
+const serviceRequests = [
   {
     id: 'SR-001',
     type: 'Housekeeping',
