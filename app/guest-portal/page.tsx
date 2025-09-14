@@ -76,7 +76,7 @@ export default function GuestPortalPage({}: GuestPortalProps) {
       } else {
         toast.error('Failed to activate digital key', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error activating digital key', { id: toastId })
     }
   }
@@ -100,8 +100,8 @@ export default function GuestPortalPage({}: GuestPortalProps) {
         })
       })
 
-      const data = await response.json() as { success?: boolean; message?: string; error?: string; data?: unknown }
-      if (data.success) {
+      const data = await response.json() as { success?: boolean; message?: string; error?: string; data?: { id: string; requestedAt: string } }
+      if (data.success && data.data) {
         const newRequest: ServiceRequest = {
           id: data.data.id,
           type: serviceType,
@@ -114,7 +114,7 @@ export default function GuestPortalPage({}: GuestPortalProps) {
       } else {
         toast.error(`Failed to submit ${serviceType} request`, { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error(`Error submitting ${serviceType} request`, { id: toastId })
     }
   }

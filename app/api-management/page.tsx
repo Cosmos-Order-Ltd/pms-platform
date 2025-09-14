@@ -192,7 +192,7 @@ export default function APIManagementPage() {
       } else {
         toast.error('Failed to export API logs', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error exporting API logs', { id: toastId })
     }
   }

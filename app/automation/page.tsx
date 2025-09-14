@@ -4,13 +4,13 @@ import React, { useState } from 'react'
 
 interface AutomationCondition {
   field: string
-  operator: 'equals' | 'not_equals' | 'greater_than' | 'less_than' | 'contains' | 'not_contains' | 'not_empty'
-  value: string | number | boolean | null
+  operator: 'equals' | 'not_equals' | 'greater_than' | 'less_than' | 'contains' | 'not_contains' | 'not_empty' | 'greater_than_equals' | 'in'
+  value: string | number | boolean | null | string[]
 }
 
 interface AutomationTrigger {
   event: string
-  conditions: AutomationCondition[]
+  conditions?: AutomationCondition[]
 }
 
 interface AutomationActionConfig {
@@ -36,7 +36,7 @@ interface AutomationActionConfig {
 }
 
 interface AutomationAction {
-  type: 'send_email' | 'send_notification' | 'create_task' | 'update_pricing' | 'custom'
+  type: 'send_email' | 'send_notification' | 'create_task' | 'update_pricing' | 'adjust_rates' | 'send_sms' | 'assign_task' | 'update_room_status' | 'create_followup' | 'award_points' | 'create_discount' | 'assign_premium_room' | 'notify_management' | 'create_maintenance_task' | 'schedule_downtime' | 'custom'
   config: AutomationActionConfig
 }
 
@@ -472,7 +472,7 @@ export default function AutomationPage() {
         <h1 className="text-2xl font-bold text-gray-900">Automation Rules Engine</h1>
         <div className="flex gap-2">
           <button
-            onClick={() => setShowCreateModal(true)}
+            onClick={() => _setShowCreateModal(true)}
             className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm"
           >
             ➕ Create Rule
@@ -592,7 +592,7 @@ export default function AutomationPage() {
                         <h4 className="text-sm font-medium text-gray-700 mb-2">Trigger</h4>
                         <div className="text-sm text-gray-600">
                           <div className="font-medium">{rule.trigger.event}</div>
-                          {rule.trigger.conditions.length > 0 && (
+                          {rule.trigger.conditions && rule.trigger.conditions.length > 0 && (
                             <div className="mt-1 space-y-1">
                               {rule.trigger.conditions.map((condition, index) => (
                                 <div key={index} className="text-xs">

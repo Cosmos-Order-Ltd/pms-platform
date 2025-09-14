@@ -195,7 +195,7 @@ export default function AdminPage() {
       } else {
         toast.error('Failed to export audit logs', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error exporting audit logs', { id: toastId })
     }
   }
@@ -217,7 +217,7 @@ export default function AdminPage() {
       } else {
         toast.error('Failed to refresh system health', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error refreshing system health', { id: toastId })
     }
   }

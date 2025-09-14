@@ -5,10 +5,17 @@ import React, { useState } from 'react'
 interface PaymentMethodConfig {
   apiKey?: string
   secretKey?: string
+  publicKey?: string
   webhookUrl?: string
+  webhookEndpoint?: string
   merchantId?: string
+  clientId?: string
+  iban?: string
+  bic?: string
+  bankName?: string
   sandboxMode?: boolean
   customSettings?: Record<string, unknown>
+  [key: string]: unknown
 }
 
 interface PaymentMethod {

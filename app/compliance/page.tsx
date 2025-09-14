@@ -91,7 +91,7 @@ export default function CompliancePage() {
       } else {
         toast.error('Failed to generate compliance report', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error generating compliance report', { id: toastId })
     }
   }
@@ -115,7 +115,7 @@ export default function CompliancePage() {
       } else {
         toast.error('Failed to complete compliance audit', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error running compliance audit', { id: toastId })
     }
   }
@@ -143,7 +143,7 @@ export default function CompliancePage() {
       } else {
         toast.error('Failed to export tax report', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error exporting tax report', { id: toastId })
     }
   }

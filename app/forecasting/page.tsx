@@ -72,7 +72,7 @@ export default function ForecastingPage() {
       } else {
         toast.error('Failed to generate Excel forecast', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error generating Excel forecast', { id: toastId })
     }
   }
@@ -96,7 +96,7 @@ export default function ForecastingPage() {
       } else {
         toast.error('Failed to export model configuration', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error exporting model configuration', { id: toastId })
     }
   }
@@ -120,7 +120,7 @@ export default function ForecastingPage() {
       } else {
         toast.error('Failed to generate scenario report', { id: toastId })
       }
-    } catch (_error) {
+    } catch {
       toast.error('Error generating scenario report', { id: toastId })
     }
   }

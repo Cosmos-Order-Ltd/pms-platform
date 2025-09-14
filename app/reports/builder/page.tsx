@@ -443,7 +443,7 @@ export default function ReportBuilderPage() {
 
                       <input
                         type={filter.type === 'date' ? 'date' : filter.type === 'number' ? 'number' : 'text'}
-                        value={filter.value}
+                        value={String(filter.value)}
                         onChange={(e) => updateFilter(index, { value: e.target.value })}
                         className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter value..."
