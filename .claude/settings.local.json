@@ -11,7 +11,8 @@
       "Bash(timeout 10 pnpm dev)",
       "Bash(pnpm exec:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

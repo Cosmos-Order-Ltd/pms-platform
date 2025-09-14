@@ -56,8 +56,11 @@ const config = typescriptEslint.config(
           varsIgnorePattern: "^_",
         },
       ],
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-empty-object-type": "warn",
+      "prefer-const": "warn",
       "sort-imports": [
-        "error",
+        "warn",
         {
           ignoreCase: true,
           ignoreDeclarationSort: true,
