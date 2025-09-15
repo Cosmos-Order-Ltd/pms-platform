@@ -14,6 +14,7 @@ echo 127.0.0.1    staff.pms.cosmmos >> C:\Windows\System32\drivers\etc\hosts
 echo 127.0.0.1    api.pms.cosmmos >> C:\Windows\System32\drivers\etc\hosts
 echo 127.0.0.1    backend.pms.cosmmos >> C:\Windows\System32\drivers\etc\hosts
 echo 127.0.0.1    core.pms.cosmmos >> C:\Windows\System32\drivers\etc\hosts
+echo 127.0.0.1    traefik.pms.cosmmos >> C:\Windows\System32\drivers\etc\hosts
 
 echo.
 echo Domain setup complete! Access your applications at:
@@ -24,5 +25,6 @@ echo   📱 Staff:          http://staff.pms.cosmmos:30080
 echo   🌐 API Gateway:    http://api.pms.cosmmos:30080
 echo   🔧 Backend:        http://backend.pms.cosmmos:30080
 echo   ⚙️  Core:          http://core.pms.cosmmos:30080
+echo   🚦 Traefik Dashboard: http://traefik.pms.cosmmos:30080/dashboard/
 echo.
 pause
