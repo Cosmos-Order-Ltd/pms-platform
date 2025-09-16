@@ -11,6 +11,7 @@ import healthRoutes from './routes/health';
 import { errorHandler } from './middleware/errorHandler';
 import { requestLogger } from './middleware/logger';
 import { initializeRedis } from './services/redis';
+import { initializeCoreServices } from './services/auth';
 
 dotenv.config();
 
@@ -75,6 +76,10 @@ async function startServer() {
     // Initialize Redis connection
     await initializeRedis();
     console.log('✅ Redis connected successfully');
+
+    // Initialize core services with authentication
+    initializeCoreServices();
+    console.log('✅ Core services initialized');
 
     // Start server
     app.listen(PORT, () => {

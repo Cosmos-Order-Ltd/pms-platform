@@ -1,0 +1,201 @@
+name: 'Deploy to Staging'
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: 'Full Test Suite'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: pms_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint and format check
+        run: |
+          npm run lint
+          npm run prettier
+
+      - name: Type check
+        run: npm run type-check:all
+
+      - name: Run all tests
+        run: npm run test:all
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/pms_test
+          REDIS_URL: redis://localhost:6379
+          JWT_SECRET: test-jwt-secret
+          NODE_ENV: test
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+
+      - name: Build for production
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Run E2E tests
+        run: npm run e2e
+        env:
+          NODE_ENV: test
+
+      - name: Upload test coverage
+        uses: codecov/codecov-action@v4
+        with:
+          directory: ./coverage
+
+  build-and-push:
+    name: 'Build & Push Images'
+    runs-on: ubuntu-latest
+    needs: test
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push backend services
+        run: |
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.repository }}/pms-backend:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}/pms-backend:latest \
+            --push ./pms-backend
+
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.repository }}/pms-core:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}/pms-core:latest \
+            --push ./pms-core
+
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.repository }}/api-gateway:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}/api-gateway:latest \
+            --push ./api-gateway
+
+      - name: Build and push frontend services
+        run: |
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.repository }}/pms-admin:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}/pms-admin:latest \
+            --push ./pms-admin
+
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.repository }}/pms-guest:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}/pms-guest:latest \
+            --push ./pms-guest
+
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.repository }}/pms-staff:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}/pms-staff:latest \
+            --push ./pms-staff
+
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ghcr.io/${{ github.repository }}/pms-marketplace:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}/pms-marketplace:latest \
+            --push ./pms-marketplace
+
+  deploy-staging:
+    name: 'Deploy to Staging Environment'
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    timeout-minutes: 15
+    environment: staging
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: 'latest'
+
+      - name: Deploy to staging
+        run: |
+          # Update Helm values with new image tags
+          sed -i "s|tag: \"latest\"|tag: \"${{ github.sha }}\"|g" \
+            pms-infrastructure/helm/pms-chart/values-staging.yaml
+
+          # Deploy with Helm
+          helm upgrade --install pms-staging \
+            ./pms-infrastructure/helm/pms-chart \
+            --namespace pms-staging \
+            --create-namespace \
+            --values ./pms-infrastructure/helm/pms-chart/values-staging.yaml \
+            --wait --timeout=10m
+
+      - name: Run health checks
+        run: |
+          # Wait for deployment to be ready
+          kubectl wait --for=condition=available --timeout=300s \
+            deployment --all -n pms-staging
+
+          # Check health endpoints
+          kubectl run health-check --rm -i --restart=Never \
+            --image=curlimages/curl -- \
+            curl -f http://api-gateway.pms-staging:8080/health
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ Deployment to staging successful"
+          else
+            echo "❌ Deployment to staging failed"
+          fi

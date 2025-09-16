@@ -3,6 +3,12 @@ import { createClient, RedisClientType } from 'redis';
 let redisClient: RedisClientType;
 
 export const initializeRedis = async (): Promise<void> => {
+  // Skip Redis in development mode
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Redis connection skipped for development');
+    return;
+  }
+
   try {
     redisClient = createClient({
       url: process.env.REDIS_URL || 'redis://localhost:6379',

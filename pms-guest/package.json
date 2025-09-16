@@ -4,9 +4,9 @@
   "description": "PMS Guest Portal - Property booking and guest services",
   "main": "src/index.tsx",
   "scripts": {
-    "dev": "cross-env FORCE_COLOR=1 next dev --turbo -p 3001",
+    "dev": "cross-env FORCE_COLOR=1 next dev --turbo -p 3011",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start -p 3011",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
