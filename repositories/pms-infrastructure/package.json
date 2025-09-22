@@ -1,0 +1,60 @@
+{
+  "name": "@pms/infrastructure",
+  "version": "1.0.0",
+  "description": "Infrastructure as Code for PMS Platform - Kubernetes, Docker, CI/CD",
+  "main": "scripts/deploy.js",
+  "scripts": {
+    "validate": "bash scripts/validate-environment.sh",
+    "deploy:dev": "bash scripts/deploy-development.sh",
+    "deploy:staging": "bash scripts/deploy-staging.sh",
+    "deploy:prod": "bash scripts/deploy-production.sh",
+    "k8s:apply": "kubectl apply -f k8s/",
+    "k8s:delete": "kubectl delete -f k8s/",
+    "helm:install": "bash scripts/helm-install.sh",
+    "helm:upgrade": "bash scripts/helm-upgrade.sh",
+    "docker:build": "bash scripts/docker-build-all.sh",
+    "docker:push": "bash scripts/docker-push-all.sh",
+    "monitoring:setup": "bash scripts/setup-monitoring.sh",
+    "backup:create": "bash scripts/backup-databases.sh",
+    "backup:restore": "bash scripts/restore-databases.sh",
+    "ssl:renew": "bash scripts/renew-ssl-certificates.sh",
+    "security:audit": "bash scripts/security-audit.sh",
+    "logs:collect": "bash scripts/collect-logs.sh",
+    "test:infra": "bash scripts/test-infrastructure.sh"
+  },
+  "keywords": [
+    "infrastructure",
+    "kubernetes",
+    "docker",
+    "helm",
+    "ci-cd",
+    "monitoring",
+    "devops",
+    "pms"
+  ],
+  "author": "PMS DevOps Team",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+http://192.168.30.98:3000/charilaouc/pms-infrastructure.git"
+  },
+  "devDependencies": {
+    "shellcheck": "^0.8.0",
+    "yaml-lint": "^1.2.4",
+    "helm-docs": "^1.5.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "kubectl": ">=1.25.0",
+    "helm": ">=3.10.0",
+    "docker": ">=20.10.0"
+  },
+  "files": [
+    "k8s/**/*",
+    "helm/**/*",
+    "docker/**/*",
+    "scripts/**/*",
+    "monitoring/**/*",
+    "README.md"
+  ]
+}
