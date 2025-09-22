@@ -15,6 +15,7 @@ const properties_1 = __importDefault(require("./routes/properties"));
 const rooms_1 = __importDefault(require("./routes/rooms"));
 const staff_1 = __importDefault(require("./routes/staff"));
 const system_1 = __importDefault(require("./routes/system"));
+const cyprus_1 = __importDefault(require("./routes/cyprus"));
 const errorHandler_1 = require("./middleware/errorHandler");
 const logger_1 = require("./middleware/logger");
 dotenv_1.default.config();
@@ -32,7 +33,7 @@ app.use(express_1.default.json({ limit: '10mb' }));
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(logger_1.requestLogger);
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
     res.json({
         status: 'OK',
         timestamp: new Date().toISOString(),
@@ -48,10 +49,11 @@ app.use('/api/v1/properties', properties_1.default);
 app.use('/api/v1/rooms', rooms_1.default);
 app.use('/api/v1/staff', staff_1.default);
 app.use('/api/v1/system', system_1.default);
+app.use('/api/v1/cyprus', cyprus_1.default);
 // Error handling middleware
 app.use(errorHandler_1.errorHandler);
 // 404 handler
-app.use('*', (req, res) => {
+app.use('*', (_req, res) => {
     res.status(404).json({
         success: false,
         message: 'Route not found'

@@ -11,6 +11,7 @@ import propertyRoutes from './routes/properties';
 import roomRoutes from './routes/rooms';
 import staffRoutes from './routes/staff';
 import systemRoutes from './routes/system';
+import cyprusRoutes from './routes/cyprus';
 
 import { errorHandler } from './middleware/errorHandler';
 import { requestLogger } from './middleware/logger';
@@ -50,6 +51,7 @@ app.use('/api/v1/properties', propertyRoutes);
 app.use('/api/v1/rooms', roomRoutes);
 app.use('/api/v1/staff', staffRoutes);
 app.use('/api/v1/system', systemRoutes);
+app.use('/api/v1/cyprus', cyprusRoutes);
 
 // Error handling middleware
 app.use(errorHandler);

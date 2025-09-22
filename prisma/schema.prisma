@@ -184,6 +184,12 @@ model Property {
   taxRate         Float          @default(0.19)
   tourismTax      Float          @default(1.5)
 
+  // Cyprus-specific fields
+  vatNumber              String?           // Cyprus VAT registration number
+  policeStationId        String?           // Assigned police station for guest registration
+  cyprusTourismLicense   String?           // Cyprus Tourism Board license number
+  vatRate                Float             @default(0.09) // Cyprus accommodation VAT rate (9%)
+
   // Organization relation
   organizationId  String
   organization    Organization   @relation(fields: [organizationId], references: [id])
@@ -195,6 +201,11 @@ model Property {
 
   // Marketplace
   marketplaceListings MarketplaceListing[]
+
+  // Cyprus-specific relations
+  vatReports      CyprusVATReport[]
+  policeRegistrations PoliceRegistration[]
+  cyprusSettings  CyprusLocalization[]
 
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -275,8 +286,15 @@ model Guest {
   totalStays      Int       @default(0)
   totalSpent      Float     @default(0)
 
+  // Cyprus-specific fields
+  nationalityCode String?   // ISO 3166-1 alpha-3 country code
+  cyprusResident  Boolean   @default(false) // Cyprus residency status for police reporting
+
   reservations    Reservation[]
   reviews         Review[]
+
+  // Cyprus-specific relations
+  policeRegistrations PoliceRegistration[]
 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
@@ -421,6 +439,11 @@ model Reservation {
   totalAmount     Float
   currency        String            @default("EUR")
 
+  // Cyprus-specific pricing fields
+  vatAmount       Float?            // Cyprus VAT amount (9% for accommodation)
+  jccReference    String?           // JCC payment gateway reference
+  policeReported  Boolean           @default(false) // Police guest registration status
+
   // Status
   status          ReservationStatus @default(PENDING)
   paymentStatus   PaymentStatus     @default(PENDING)
@@ -433,6 +456,10 @@ model Reservation {
   // Relations
   payments        Payment[]
   reviews         Review[]
+
+  // Cyprus-specific relations
+  policeRegistrations PoliceRegistration[]
+  jccTransactions     JCCTransaction[]
 
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
@@ -811,3 +838,230 @@ model SystemSetting {
 
   @@map("system_settings")
 }
+
+// ================================
+// CYPRUS-SPECIFIC MODELS
+// ================================
+
+// Cyprus VAT reporting for compliance
+enum VATReportStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  REJECTED
+}
+
+model CyprusVATReport {
+  id              String         @id @default(cuid())
+  propertyId      String
+  property        Property       @relation(fields: [propertyId], references: [id])
+
+  quarter         Int            // 1-4 for quarterly reporting
+  year            Int
+  reportingPeriod String         // "Q1 2024", etc.
+
+  // Financial data
+  totalRevenue    Float          // Total accommodation revenue
+  vatCollected    Float          // 9% VAT collected
+  taxableAmount   Float          // Revenue subject to VAT
+  exemptAmount    Float?         // Revenue exempt from VAT
+
+  // Submission details
+  submissionDate  DateTime?
+  tfaReference    String?        // Tax For All (TFA) reference number
+  status          VATReportStatus @default(DRAFT)
+
+  // Audit trail
+  preparedBy      String?        // User who prepared the report
+  reviewedBy      String?        // User who reviewed the report
+  notes           String?
+
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  @@unique([propertyId, quarter, year])
+  @@map("cyprus_vat_reports")
+}
+
+// Police guest registration for Cyprus compliance
+enum PoliceRegistrationStatus {
+  PENDING
+  SUBMITTED
+  CONFIRMED
+  FAILED
+  EXPIRED
+}
+
+model PoliceRegistration {
+  id              String                  @id @default(cuid())
+  propertyId      String
+  property        Property                @relation(fields: [propertyId], references: [id])
+  guestId         String
+  guest           Guest                   @relation(fields: [guestId], references: [id])
+  reservationId   String
+  reservation     Reservation             @relation(fields: [reservationId], references: [id])
+
+  // Registration details
+  passportNumber  String
+  nationality     String
+  arrivalDate     DateTime
+  departureDate   DateTime
+  roomNumber      String
+
+  // Submission details
+  submissionDate  DateTime?
+  referenceNumber String?                 // Police system reference
+  status          PoliceRegistrationStatus @default(PENDING)
+
+  // Compliance tracking
+  submittedBy     String?                 // Staff member who submitted
+  confirmationCode String?               // Police system confirmation
+  errorMessage    String?                // Error details if submission failed
+
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+
+  @@unique([guestId, reservationId])
+  @@map("police_registrations")
+}
+
+// JCC payment gateway transactions
+enum JCCTransactionStatus {
+  PENDING
+  AUTHORIZED
+  CAPTURED
+  SETTLED
+  FAILED
+  CANCELLED
+  REFUNDED
+}
+
+enum JCCPaymentMethod {
+  VISA
+  MASTERCARD
+  MAESTRO
+  AMERICAN_EXPRESS
+  LOCAL_BANK
+}
+
+model JCCTransaction {
+  id              String              @id @default(cuid())
+  reservationId   String
+  reservation     Reservation         @relation(fields: [reservationId], references: [id])
+
+  // JCC transaction details
+  jccTransactionId String             @unique // JCC system transaction ID
+  merchantReference String            // Merchant reference number
+  token           String?             // Tokenized card details
+
+  // Payment details
+  amount          Float
+  currency        String              @default("EUR")
+  paymentMethod   JCCPaymentMethod
+  cardLast4       String?             // Last 4 digits of card
+  cardBrand       String?             // Card brand (Visa, MC, etc.)
+
+  // 3D Secure details
+  threeDSAuth     Boolean             @default(false)
+  threeDSReference String?           // 3D Secure authentication reference
+
+  // Transaction status
+  status          JCCTransactionStatus @default(PENDING)
+  authCode        String?             // Authorization code
+  settlementDate  DateTime?           // Date funds were settled
+
+  // Error handling
+  errorCode       String?
+  errorMessage    String?
+
+  // Audit trail
+  initiatedBy     String?             // User who initiated the transaction
+  ipAddress       String?             // Client IP address
+
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  @@map("jcc_transactions")
+}
+
+// Cyprus SMS provider integration
+enum SMSProvider {
+  PRIMETEL
+  MTN_CYPRUS
+}
+
+enum SMSStatus {
+  PENDING
+  SENT
+  DELIVERED
+  FAILED
+  EXPIRED
+}
+
+model CyprusSMSLog {
+  id              String      @id @default(cuid())
+
+  // Message details
+  phoneNumber     String      // Cyprus format: +357XXXXXXXX
+  message         String
+  provider        SMSProvider
+
+  // Delivery tracking
+  status          SMSStatus   @default(PENDING)
+  providerRef     String?     // Provider's message reference
+  deliveredAt     DateTime?
+
+  // Cost tracking
+  cost            Float?      // Cost in EUR (typically €0.024)
+
+  // Context
+  reservationId   String?     // Related reservation if applicable
+  guestId         String?     // Related guest if applicable
+  sentBy          String?     // User who sent the SMS
+
+  // Error handling
+  errorCode       String?
+  errorMessage    String?
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@map("cyprus_sms_logs")
+}
+
+// Cyprus localization settings
+model CyprusLocalization {
+  id              String      @id @default(cuid())
+
+  // Language preferences
+  primaryLanguage String      @default("en") // en, el, he, ru
+  supportedLanguages String[] @default(["en", "el"])
+
+  // Regional settings
+  timezone        String      @default("Asia/Nicosia")
+  dateFormat      String      @default("DD/MM/YYYY")
+  timeFormat      String      @default("24h")
+  currency        String      @default("EUR")
+
+  // Payment preferences
+  jccEnabled      Boolean     @default(false)
+  supportedCurrencies String[] @default(["EUR"])
+
+  // Communication preferences
+  smsProvider     SMSProvider @default(PRIMETEL)
+  smsEnabled      Boolean     @default(true)
+
+  // Compliance settings
+  vatReportingEnabled Boolean @default(true)
+  policeReportingEnabled Boolean @default(true)
+
+  // Property-specific settings
+  propertyId      String?     // Null for global settings
+  property        Property?   @relation(fields: [propertyId], references: [id])
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@map("cyprus_localization")
+}
+
