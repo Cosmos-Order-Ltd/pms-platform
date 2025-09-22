@@ -1,0 +1,53 @@
+# COSMOS ORDER PROTOCOL - Domain Configuration
+# Generated: 2025-09-21T02:30:10.800Z
+# Philosophy: Every service has its cosmic address
+
+
+# Brand Domain
+192.168.30.98	cosmosorder.com
+
+# PMS Platform (.pms.cosmos)
+192.168.30.98	admin.pms.cosmos
+192.168.30.98	guest.pms.cosmos
+192.168.30.98	staff.pms.cosmos
+192.168.30.98	market.pms.cosmos
+192.168.30.98	api.pms.cosmos
+192.168.30.98	hotels.pms.cosmos
+192.168.30.98	resorts.pms.cosmos
+192.168.30.98	boutique.pms.cosmos
+192.168.30.98	vacation.pms.cosmos
+
+# Business Operations (.ops.cosmos)
+192.168.30.98	billing.ops.cosmos # Port 3018
+192.168.30.98	acquisition.ops.cosmos # Port 3020
+192.168.30.98	intelligence.ops.cosmos # Port 3025
+192.168.30.98	cultivation.ops.cosmos # Port 3032
+192.168.30.98	automation.ops.cosmos
+
+# Technology Platform (.platform.cosmos)
+192.168.30.98	api.platform.cosmos
+192.168.30.98	ai.platform.cosmos # Port 3026
+192.168.30.98	security.platform.cosmos # Port 3024
+192.168.30.98	luxury.platform.cosmos # Port 3031
+192.168.30.98	protocol.platform.cosmos # Port 3030
+127.0.0.1	gateway.platform.cosmos # Port 3034
+
+# Member Experience (.member.cosmos)
+192.168.30.98	founder.member.cosmos
+192.168.30.98	elite.member.cosmos
+192.168.30.98	sovereign.member.cosmos
+192.168.30.98	eternal.member.cosmos
+192.168.30.98	cosmos.member.cosmos
+
+# Infrastructure (.infra.cosmos)
+192.168.30.98	monitor.infra.cosmos
+192.168.30.98	metrics.infra.cosmos
+192.168.30.98	deploy.infra.cosmos
+192.168.30.98	ci.infra.cosmos
+192.168.30.98	proxy.infra.cosmos
+192.168.30.98	stats.infra.cosmos
+
+# Development Access
+127.0.0.1	localhost.cosmos
+127.0.0.1	dev.cosmos
+127.0.0.1	gateway.platform.cosmos # Port 3034

@@ -1,0 +1,599 @@
+File Comparison Log - Mon, Sep 22, 2025  7:20:04 PM
+[0;34m[INFO][0m === Phase 1: Cloning Gitea Repositories ===
+[0;34m[INFO][0m IDENTICAL: pms-shared/.gitignore (removing local copy)
+[0;34m[INFO][0m Found 38 repositories to clone
+[0;34m[INFO][0m Cloning ai-revenue-optimization...
+[1;33m[WARNING][0m Failed to clone ai-revenue-optimization
+[0;34m[INFO][0m Cloning billing-engine...
+[1;33m[WARNING][0m Failed to clone billing-engine
+[0;34m[INFO][0m Cloning business-intelligence-system...
+[0;34m[INFO][0m IDENTICAL: pms-shared/Dockerfile (removing local copy)
+[1;33m[WARNING][0m Failed to clone business-intelligence-system
+[0;34m[INFO][0m Cloning client-cultivation-system...
+[1;33m[WARNING][0m Failed to clone client-cultivation-system
+[0;34m[INFO][0m Cloning cosmos-dns-config...
+[1;33m[WARNING][0m Failed to clone cosmos-dns-config
+[0;34m[INFO][0m Cloning cosmos-docker-deployment...
+[1;33m[WARNING][0m Failed to clone cosmos-docker-deployment
+[0;34m[INFO][0m IDENTICAL: pms-shared/package-lock.json (removing local copy)
+[0;34m[INFO][0m Cloning cosmos-invitation-generator...
+[1;33m[WARNING][0m Failed to clone cosmos-invitation-generator
+[0;34m[INFO][0m Cloning cosmos-order-protocol...
+[1;33m[WARNING][0m Failed to clone cosmos-order-protocol
+[0;34m[INFO][0m Cloning cosmos-real-estate...
+[1;33m[WARNING][0m Failed to clone cosmos-real-estate
+[0;34m[INFO][0m Cloning cosmos-services-launcher...
+[0;34m[INFO][0m IDENTICAL: pms-shared/package.json (removing local copy)
+[1;33m[WARNING][0m Failed to clone cosmos-services-launcher
+[0;34m[INFO][0m Cloning customer-acquisition...
+[1;33m[WARNING][0m Failed to clone customer-acquisition
+[0;34m[INFO][0m Cloning cyprus-access-control...
+[1;33m[WARNING][0m Failed to clone cyprus-access-control
+[0;34m[INFO][0m Cloning cyprus-localization...
+[1;33m[WARNING][0m Failed to clone cyprus-localization
+[0;34m[INFO][0m Cloning database-schema...
+[0;34m[INFO][0m IDENTICAL: pms-shared/README.md (removing local copy)
+[1;33m[WARNING][0m Failed to clone database-schema
+[0;34m[INFO][0m Cloning email-automation-system...
+[1;33m[WARNING][0m Failed to clone email-automation-system
+[0;34m[INFO][0m Cloning founder-recruitment-campaign...
+[1;33m[WARNING][0m Failed to clone founder-recruitment-campaign
+[0;34m[INFO][0m Cloning invitation-engine...
+[1;33m[WARNING][0m Failed to clone invitation-engine
+[0;34m[INFO][0m Cloning luxury-experience-engine...
+[0;34m[INFO][0m IDENTICAL: pms-shared/src/constants/index.ts (removing local copy)
+[1;33m[WARNING][0m Failed to clone luxury-experience-engine
+[0;34m[INFO][0m Cloning malta-expansion-system...
+[1;33m[WARNING][0m Failed to clone malta-expansion-system
+[0;34m[INFO][0m Cloning marketing-server...
+[1;33m[WARNING][0m Failed to clone marketing-server
+[0;34m[INFO][0m Cloning multi-tenant-domain-system...
+[1;33m[WARNING][0m Failed to clone multi-tenant-domain-system
+[0;34m[INFO][0m Cloning onboarding-automation...
+[0;34m[INFO][0m IDENTICAL: pms-shared/src/index.ts (removing local copy)
+[1;33m[WARNING][0m Failed to clone onboarding-automation
+[0;34m[INFO][0m Cloning pms-admin...
+[1;33m[WARNING][0m Failed to clone pms-admin
+[0;34m[INFO][0m Cloning pms-backend...
+[1;33m[WARNING][0m Failed to clone pms-backend
+[0;34m[INFO][0m Cloning pms-database-management...
+[1;33m[WARNING][0m Failed to clone pms-database-management
+[0;34m[INFO][0m Cloning pms-deployment-automation...
+[1;33m[WARNING][0m Failed to clone pms-deployment-automation
+[0;34m[INFO][0m Cloning pms-docs...
+[1;33m[WARNING][0m Failed to clone pms-docs
+[0;34m[INFO][0m IDENTICAL: pms-shared/src/types/index.ts (removing local copy)
+[0;34m[INFO][0m Cloning pms-guest...
+[1;33m[WARNING][0m Failed to clone pms-guest
+[0;34m[INFO][0m Cloning pms-infrastructure...
+[1;33m[WARNING][0m Failed to clone pms-infrastructure
+[0;34m[INFO][0m Cloning pms-infrastructure-repo...
+[1;33m[WARNING][0m Failed to clone pms-infrastructure-repo
+[0;34m[INFO][0m Cloning pms-marketplace...
+[0;34m[INFO][0m IDENTICAL: pms-shared/src/utils/index.ts (removing local copy)
+[1;33m[WARNING][0m Failed to clone pms-marketplace
+[0;34m[INFO][0m Cloning pms-monitoring-stack...
+[1;33m[WARNING][0m Failed to clone pms-monitoring-stack
+[0;34m[INFO][0m Cloning pms-platform...
+[1;33m[WARNING][0m Failed to clone pms-platform
+[0;34m[INFO][0m Cloning pms-security-tools...
+[1;33m[WARNING][0m Failed to clone pms-security-tools
+[0;34m[INFO][0m Cloning pms-shared-repo...
+[0;34m[INFO][0m IDENTICAL: pms-shared/tsconfig.json (removing local copy)
+[1;33m[WARNING][0m Failed to clone pms-shared-repo
+[0;34m[INFO][0m Cloning pms-staff...
+[1;33m[WARNING][0m Failed to clone pms-staff
+[0;34m[INFO][0m Repository pms-shared-repo: 25 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Cloning real-estate-platform...
+[1;33m[WARNING][0m Failed to clone real-estate-platform
+[0;34m[INFO][0m Comparing pms-staff...
+[0;34m[INFO][0m Cloning shared-library...
+[1;33m[WARNING][0m Failed to clone shared-library
+[0;32m[SUCCESS][0m Cloned 0 repositories
+[0;34m[INFO][0m === Phase 2: File-by-File Comparison ===
+[1;33m[WARNING][0m No corresponding Gitea repository for api-gateway
+[0;34m[INFO][0m Comparing pms-admin...
+[0;34m[INFO][0m LOCAL-ONLY: graph.svg
+[0;34m[INFO][0m IDENTICAL: .github/workflows/ci.yml (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: next-env.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: playwright-report/index.html
+[0;34m[INFO][0m LOCAL-ONLY: report-bundle-size.js
+[0;34m[INFO][0m LOCAL-ONLY: test-results/.last-run.json
+[0;34m[INFO][0m LOCAL-ONLY: test-results/buttons-Button-Functionali-78074--password-form-button-works-chromium/error-context.md
+[0;34m[INFO][0m LOCAL-ONLY: test-results/forms-Forms-and-API-Tests--10e55-ith-Cyprus-tax-calculations-chromium/error-context.md
+[0;34m[INFO][0m LOCAL-ONLY: test-results/navigation-Navigation-Tests-authentication-pages-navigation-chromium/error-context.md
+[0;34m[INFO][0m LOCAL-ONLY: test-results/navigation-Navigation-Tests-main-application-pages-load-chromium/error-context.md
+[0;34m[INFO][0m LOCAL-ONLY: test-results/navigation-Navigation-Tests-main-navigation-links-work-chromium/error-context.md
+[0;34m[INFO][0m Repository pms-admin: 0 identical, 10 local-only, 0 conflicts
+[0;34m[INFO][0m IDENTICAL: .gitignore (removing local copy)
+[0;34m[INFO][0m Comparing pms-backend...
+[1;33m[WARNING][0m CONFLICT: .env.example (files differ)
+[0;34m[INFO][0m LOCAL-ONLY: dist/controllers/authController.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/controllers/authController.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/controllers/authController.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/controllers/authController.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/index.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/index.d.ts.map
+[0;34m[INFO][0m IDENTICAL: app/page.tsx (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/index.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/index.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/auth.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/auth.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/auth.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/auth.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/errorHandler.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/errorHandler.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/errorHandler.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/errorHandler.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/logger.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/logger.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/logger.js
+[0;34m[INFO][0m IDENTICAL: Dockerfile (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/middleware/logger.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/admin.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/admin.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/admin.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/admin.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/auth.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/auth.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/auth.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/auth.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/index.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/index.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/index.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/index.js.map
+[0;34m[INFO][0m IDENTICAL: e2e/staff-app.spec.ts (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/jcc.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/jcc.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/jcc.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/jcc.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/police.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/police.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/police.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/police.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/sms.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/sms.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/sms.js
+[0;34m[INFO][0m IDENTICAL: next.config.ts (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/sms.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/vat.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/vat.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/vat.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/cyprus/vat.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/guests.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/guests.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/guests.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/guests.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/health.d.ts
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/health.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/health.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/health.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/properties.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/properties.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/properties.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/properties.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/reservations.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/reservations.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/reservations.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/reservations.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/rooms.d.ts
+[0;34m[INFO][0m IDENTICAL: playwright.config.ts (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/rooms.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/rooms.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/rooms.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/staff.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/staff.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/staff.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/staff.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/system.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/system.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/system.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/routes/system.js.map
+[0;34m[INFO][0m IDENTICAL: README.md (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/utils/prisma.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/utils/prisma.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/utils/prisma.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/utils/prisma.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalSetup.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalSetup.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalSetup.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalSetup.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalTeardown.d.ts
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalTeardown.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalTeardown.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/globalTeardown.js.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/setup.d.ts
+[0;34m[INFO][0m IDENTICAL: tsconfig.json (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/setup.d.ts.map
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/setup.js
+[0;34m[INFO][0m LOCAL-ONLY: dist/__tests__/setup.js.map
+[0;34m[INFO][0m Repository pms-staff: 10 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing cosmos-real-estate...
+[1;33m[WARNING][0m CONFLICT: package-lock.json (files differ)
+[1;33m[WARNING][0m CONFLICT: package.json (files differ)
+[0;34m[INFO][0m LOCAL-ONLY: prisma/dev.db
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914010026_initial_operations_system/migration.sql
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914010609_guest_experience_models/migration.sql
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914011929_analytics_reporting_system/migration.sql
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/migration_lock.toml
+[0;34m[INFO][0m IDENTICAL: .env.example (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/index.ts (files differ)
+[0;34m[INFO][0m LOCAL-ONLY: src/middleware/tenant.ts
+[0;34m[INFO][0m LOCAL-ONLY: src/routes/cyprus/index.ts
+[0;34m[INFO][0m LOCAL-ONLY: src/routes/cyprus/jcc.ts
+[0;34m[INFO][0m LOCAL-ONLY: src/routes/cyprus/police.ts
+[0;34m[INFO][0m LOCAL-ONLY: src/routes/cyprus/sms.ts
+[0;34m[INFO][0m LOCAL-ONLY: src/routes/cyprus/vat.ts
+[0;34m[INFO][0m LOCAL-ONLY: src/routes/tenants.ts
+[0;34m[INFO][0m LOCAL-ONLY: src/services/tenantService.ts
+[1;33m[WARNING][0m CONFLICT: tsconfig.json (files differ)
+[0;34m[INFO][0m IDENTICAL: deploy-container-43.sh (removing local copy)
+[0;34m[INFO][0m Repository pms-backend: 0 identical, 105 local-only, 5 conflicts
+[0;34m[INFO][0m Comparing pms-docs...
+[0;34m[INFO][0m Repository pms-docs: 0 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing pms-guest...
+[0;34m[INFO][0m LOCAL-ONLY: .github/workflows/ci.yml
+[0;34m[INFO][0m IDENTICAL: docker-compose.yml (removing local copy)
+[1;33m[WARNING][0m CONFLICT: .gitignore (files differ)
+[0;34m[INFO][0m Repository pms-guest: 0 identical, 1 local-only, 1 conflicts
+[0;34m[INFO][0m Comparing pms-infrastructure...
+[0;34m[INFO][0m Repository pms-infrastructure: 0 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing pms-infrastructure-repo...
+[0;34m[INFO][0m IDENTICAL: Dockerfile (removing local copy)
+[1;33m[WARNING][0m CONFLICT: scripts/LOAD_TEST_REPORT.md (files differ)
+[1;33m[WARNING][0m CONFLICT: scripts/REALITY_VERIFICATION_COMPLETE.md (files differ)
+[1;33m[WARNING][0m CONFLICT: scripts/SECURITY_AUDIT_REPORT.md (files differ)
+[0;34m[INFO][0m Repository pms-infrastructure-repo: 0 identical, 0 local-only, 3 conflicts
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[0;34m[INFO][0m Comparing pms-marketplace...
+[0;34m[INFO][0m Repository pms-marketplace: 0 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing pms-shared-repo...
+[0;34m[INFO][0m Repository pms-shared-repo: 0 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m IDENTICAL: src/index.ts (removing local copy)
+[0;34m[INFO][0m Comparing pms-staff...
+[0;34m[INFO][0m Repository pms-staff: 0 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing cosmos-real-estate...
+[0;34m[INFO][0m IDENTICAL: src/services/CyprusComplianceEngine.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/services/CyprusComplianceEngine.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/types/index.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/types/index.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: tsconfig.json (removing local copy)
+[0;34m[INFO][0m Repository cosmos-real-estate: 3 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing cyprus-access-control...
+[1;33m[WARNING][0m CONFLICT: tsconfig.json (files differ)
+[0;34m[INFO][0m Repository cosmos-real-estate: 8 identical, 0 local-only, 1 conflicts
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[0;34m[INFO][0m Comparing cyprus-access-control...
+[0;34m[INFO][0m Repository cyprus-access-control: 1 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing cyprus-localization...
+[0;34m[INFO][0m Repository cyprus-access-control: 0 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing cyprus-localization...
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[0;34m[INFO][0m IDENTICAL: README.md (removing local copy)
+[1;33m[WARNING][0m CONFLICT: package.json (files differ)
+[0;34m[INFO][0m IDENTICAL: src/config/index.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: README.md (files differ)
+[1;33m[WARNING][0m CONFLICT: src/config/index.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/index.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/index.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/middleware/errorHandler.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/middleware/errorHandler.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/jcc.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/routes/jcc.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/localization.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/routes/localization.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/routes/police.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/routes/sms.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/routes/police.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: src/routes/sms.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/vat.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/routes/vat.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/utils/logger.ts (removing local copy)
+[0;34m[INFO][0m Repository cyprus-localization: 11 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing database-schema...
+[1;33m[WARNING][0m CONFLICT: src/utils/logger.ts (files differ)
+[0;34m[INFO][0m Repository cyprus-localization: 2 identical, 0 local-only, 9 conflicts
+[0;34m[INFO][0m Comparing database-schema...
+[0;34m[INFO][0m IDENTICAL: .gitignore (removing local copy)
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: prisma/dev.db
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[0;34m[INFO][0m IDENTICAL: prisma/dev.db.backup.20250915_004259 (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: prisma/dev.db
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914010026_initial_operations_system/migration.sql
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914010609_guest_experience_models/migration.sql
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914011929_analytics_reporting_system/migration.sql
+[1;33m[WARNING][0m CONFLICT: prisma/dev.db.backup.20250915_004259 (files differ)
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914010026_initial_operations_system/migration.sql
+[0;34m[INFO][0m IDENTICAL: prisma/migrations/migration_lock.toml (removing local copy)
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914010609_guest_experience_models/migration.sql
+[0;34m[INFO][0m LOCAL-ONLY: prisma/migrations/20250914011929_analytics_reporting_system/migration.sql
+[0;34m[INFO][0m IDENTICAL: prisma/schema-enhanced.prisma (removing local copy)
+[1;33m[WARNING][0m CONFLICT: prisma/migrations/migration_lock.toml (files differ)
+[1;33m[WARNING][0m CONFLICT: prisma/schema-enhanced.prisma (files differ)
+[0;34m[INFO][0m IDENTICAL: prisma/schema.prisma (removing local copy)
+[1;33m[WARNING][0m CONFLICT: prisma/schema.prisma (files differ)
+[0;34m[INFO][0m IDENTICAL: prisma/seed.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: prisma/seed.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: README.md (removing local copy)
+[0;34m[INFO][0m IDENTICAL: README.md (removing local copy)
+[0;34m[INFO][0m IDENTICAL: schema.prisma (removing local copy)
+[1;33m[WARNING][0m CONFLICT: schema.prisma (files differ)
+[0;34m[INFO][0m IDENTICAL: tsconfig.json (removing local copy)
+[0;34m[INFO][0m Repository database-schema: 10 identical, 4 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing invitation-engine...
+[0;34m[INFO][0m IDENTICAL: tsconfig.json (removing local copy)
+[0;34m[INFO][0m Repository database-schema: 3 identical, 4 local-only, 6 conflicts
+[0;34m[INFO][0m IDENTICAL: .dockerignore (removing local copy)
+[0;34m[INFO][0m Comparing invitation-engine...
+[0;34m[INFO][0m IDENTICAL: .env (removing local copy)
+[0;34m[INFO][0m IDENTICAL: .env (removing local copy)
+[0;34m[INFO][0m IDENTICAL: .env.example (removing local copy)
+[1;33m[WARNING][0m CONFLICT: .env.example (files differ)
+[0;34m[INFO][0m IDENTICAL: deploy-container-31.sh (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/database/connection.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: deploy-container-31.sh (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/database/connection.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/database/connection.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/database/connection.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/database/connection.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/database/connection.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/index.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/database/connection.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/database/connection.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/index.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/index.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/index.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/index.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/index.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/auth.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/index.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/middleware/auth.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/index.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/auth.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/auth.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/middleware/auth.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/auth.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/errorHandler.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/auth.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/middleware/errorHandler.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/auth.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/errorHandler.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/errorHandler.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/middleware/errorHandler.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/errorHandler.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/rateLimiter.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/errorHandler.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/middleware/rateLimiter.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/errorHandler.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/rateLimiter.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/rateLimiter.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/middleware/rateLimiter.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/rateLimiter.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/admin.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/rateLimiter.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/admin.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/middleware/rateLimiter.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/admin.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/admin.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/admin.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/admin.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/analytics.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/admin.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/analytics.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/admin.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/analytics.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/analytics.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/analytics.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/analytics.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/courier.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/analytics.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/courier.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/analytics.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/courier.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/courier.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/courier.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/courier.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/health.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/courier.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/courier.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/health.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/health.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/health.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/health.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/health.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/invitations.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/health.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/invitations.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/health.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/invitations.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/invitations.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/invitations.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/invitations.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/location.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/invitations.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/location.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/invitations.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/location.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/location.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/location.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/location.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/qr.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/qr.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/location.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/location.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/qr.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/qr.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/qr.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/qr.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/trials.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/trials.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/qr.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/trials.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/qr.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/routes/trials.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/trials.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/courier.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/trials.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/courier.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/routes/trials.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/courier.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/routes/trials.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/courier.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/geofencing.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/courier.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/geofencing.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/courier.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/geofencing.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/courier.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/geofencing.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/courier.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/qrCode.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/qrCode.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/geofencing.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/qrCode.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/geofencing.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/qrCode.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/geofencing.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/trialCountdown.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/geofencing.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/trialCountdown.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/trialCountdown.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/qrCode.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/qrCode.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/services/trialCountdown.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/extended.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/qrCode.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/qrCode.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/types/extended.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/extended.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/trialCountdown.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/types/extended.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/trialCountdown.d.ts.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/types/index.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/services/trialCountdown.js (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/types/index.d.ts.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/services/trialCountdown.js.map (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/types/index.js (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/types/extended.d.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: dist/types/index.js.map (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/extended.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: Dockerfile (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/extended.js (files differ)
+[0;34m[INFO][0m IDENTICAL: logs/database.log (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/extended.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: logs/error.log (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/index.d.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: dist/types/index.d.ts.map (files differ)
+[0;34m[INFO][0m IDENTICAL: logs/invitation-engine.log (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/index.js (files differ)
+[0;34m[INFO][0m IDENTICAL: package-lock.json (removing local copy)
+[1;33m[WARNING][0m CONFLICT: dist/types/index.js.map (files differ)
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[1;33m[WARNING][0m CONFLICT: Dockerfile (files differ)
+[0;34m[INFO][0m IDENTICAL: README.md (removing local copy)
+[1;33m[WARNING][0m CONFLICT: logs/database.log (files differ)
+[1;33m[WARNING][0m CONFLICT: logs/error.log (files differ)
+[0;34m[INFO][0m IDENTICAL: src/database/connection.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: logs/invitation-engine.log (files differ)
+[0;34m[INFO][0m IDENTICAL: src/database/schema.sql (removing local copy)
+[1;33m[WARNING][0m CONFLICT: package-lock.json (files differ)
+[1;33m[WARNING][0m CONFLICT: package.json (files differ)
+[0;34m[INFO][0m IDENTICAL: src/index.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: README.md (files differ)
+[0;34m[INFO][0m IDENTICAL: src/middleware/auth.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/database/connection.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/middleware/errorHandler.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/database/schema.sql (files differ)
+[0;34m[INFO][0m IDENTICAL: src/middleware/rateLimiter.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/index.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: src/middleware/auth.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/admin.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/middleware/errorHandler.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/analytics.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/middleware/rateLimiter.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/courier.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/routes/admin.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: src/routes/analytics.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/health.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/routes/courier.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/invitations.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/routes/health.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/location.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/routes/invitations.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: src/routes/location.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/routes/qr.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/routes/qr.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/routes/trials.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/routes/trials.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/services/courier.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/services/courier.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/services/geofencing.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/services/qrCode.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/services/geofencing.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/services/trialCountdown.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/services/qrCode.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/types/extended.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/services/trialCountdown.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: src/types/extended.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/types/index.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/types/index.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: test-container-31.js (removing local copy)
+[0;34m[INFO][0m IDENTICAL: tsconfig.json (removing local copy)
+[1;33m[WARNING][0m CONFLICT: test-container-31.js (files differ)
+[0;34m[INFO][0m Repository invitation-engine: 71 identical, 0 local-only, 38 conflicts
+[0;34m[INFO][0m Comparing pms-infrastructure...
+[1;33m[WARNING][0m CONFLICT: tsconfig.json (files differ)
+[0;34m[INFO][0m Repository invitation-engine: 2 identical, 0 local-only, 106 conflicts
+[0;34m[INFO][0m IDENTICAL: k8s/database.yaml (removing local copy)
+[0;34m[INFO][0m Comparing pms-infrastructure...
+[0;34m[INFO][0m IDENTICAL: k8s/namespace.yaml (removing local copy)
+[0;34m[INFO][0m IDENTICAL: k8s/namespace.yaml (removing local copy)
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[1;33m[WARNING][0m CONFLICT: package.json (files differ)
+[0;34m[INFO][0m IDENTICAL: README.md (removing local copy)
+[0;34m[INFO][0m Repository pms-infrastructure: 4 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m Comparing shared-library...
+[1;33m[WARNING][0m CONFLICT: README.md (files differ)
+[0;34m[INFO][0m Repository pms-infrastructure: 1 identical, 0 local-only, 2 conflicts
+[0;34m[INFO][0m IDENTICAL: .gitignore (removing local copy)
+[0;34m[INFO][0m Comparing shared-library...
+[0;34m[INFO][0m IDENTICAL: Dockerfile (removing local copy)
+[0;34m[INFO][0m IDENTICAL: Dockerfile (removing local copy)
+[0;34m[INFO][0m IDENTICAL: package-lock.json (removing local copy)
+[1;33m[WARNING][0m CONFLICT: package-lock.json (files differ)
+[0;34m[INFO][0m IDENTICAL: package.json (removing local copy)
+[0;34m[INFO][0m IDENTICAL: README.md (removing local copy)
+[1;33m[WARNING][0m CONFLICT: package.json (files differ)
+[1;33m[WARNING][0m CONFLICT: README.md (files differ)
+[0;34m[INFO][0m IDENTICAL: src/constants/index.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/constants/index.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/index.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: src/types/index.ts (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/index.ts (files differ)
+[1;33m[WARNING][0m CONFLICT: src/types/index.ts (files differ)
+[0;34m[INFO][0m IDENTICAL: src/utils/index.ts (removing local copy)
+[0;34m[INFO][0m IDENTICAL: tsconfig.json (removing local copy)
+[1;33m[WARNING][0m CONFLICT: src/utils/index.ts (files differ)
+[0;34m[INFO][0m Repository shared-library: 10 identical, 0 local-only, 0 conflicts
+[0;34m[INFO][0m === Phase 3: Cleaning Empty Directories ===
+[1;33m[WARNING][0m CONFLICT: tsconfig.json (files differ)
+[0;34m[INFO][0m Repository shared-library: 1 identical, 0 local-only, 8 conflicts
+[0;34m[INFO][0m === Phase 3: Cleaning Empty Directories ===
+[0;34m[INFO][0m Empty directories cleaned
+[0;34m[INFO][0m === Phase 4: Generating Detailed Report ===
+[0;34m[INFO][0m Empty directories cleaned
+[0;34m[INFO][0m === Phase 4: Generating Detailed Report ===
+[0;32m[SUCCESS][0m Detailed comparison report generated: ./file_comparison_report.md
+[0;34m[INFO][0m Cleaning up temporary files...
+[0;32m[SUCCESS][0m File comparison and deduplication completed!
+[0;34m[INFO][0m Files compared: 277
+[0;34m[INFO][0m Duplicates removed: 110
+[0;34m[INFO][0m Local-only files kept: 120
+[0;34m[INFO][0m Conflicts found: 47
+[0;34m[INFO][0m Space saved: 1 MB
+[0;34m[INFO][0m 
+[0;34m[INFO][0m Reports generated:
+[0;34m[INFO][0m   - Detailed report: ./file_comparison_report.md
+[0;34m[INFO][0m   - Operation log: ./file_comparison.log

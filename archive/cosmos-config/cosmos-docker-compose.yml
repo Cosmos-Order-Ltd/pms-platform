@@ -1,0 +1,96 @@
+
+# COSMOS ORDER PROTOCOL - Docker Compose Configuration
+# Generated: 2025-09-21T02:30:10.801Z
+# Philosophy: Containerized cosmic empire
+
+version: '3.8'
+
+services:
+  cosmos-gateway:
+    build: .
+    ports:
+      - "3034:3034"
+    environment:
+      - SERVICE_NAME=cosmos-gateway
+      - SERVICE_TYPE=gateway
+    volumes:
+      - ./cosmos-services-launcher.js:/app/index.js:ro
+    networks:
+      - cosmos-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3034/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  cosmos-protocol:
+    build: .
+    ports:
+      - "3030:3030"
+    environment:
+      - SERVICE_NAME=cosmos-order-protocol
+      - SERVICE_TYPE=protocol
+    volumes:
+      - ./cosmos-order-protocol.js:/app/index.js:ro
+    networks:
+      - cosmos-network
+    restart: unless-stopped
+    depends_on:
+      - cosmos-gateway
+
+  cosmos-luxury:
+    build: .
+    ports:
+      - "3031:3031"
+    environment:
+      - SERVICE_NAME=luxury-experience-engine
+      - SERVICE_TYPE=experience
+    volumes:
+      - ./luxury-experience-engine.js:/app/index.js:ro
+    networks:
+      - cosmos-network
+    restart: unless-stopped
+    depends_on:
+      - cosmos-gateway
+
+  cosmos-cultivation:
+    build: .
+    ports:
+      - "3032:3032"
+    environment:
+      - SERVICE_NAME=client-cultivation-system
+      - SERVICE_TYPE=cultivation
+    volumes:
+      - ./client-cultivation-system.js:/app/index.js:ro
+    networks:
+      - cosmos-network
+    restart: unless-stopped
+    depends_on:
+      - cosmos-gateway
+
+  cosmos-domains:
+    build: .
+    ports:
+      - "3033:3033"
+    environment:
+      - SERVICE_NAME=multi-tenant-domain-system
+      - SERVICE_TYPE=domains
+    volumes:
+      - ./multi-tenant-domain-system.js:/app/index.js:ro
+    networks:
+      - cosmos-network
+    restart: unless-stopped
+    depends_on:
+      - cosmos-gateway
+
+networks:
+  cosmos-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  cosmos-data:
+  cosmos-ssl:

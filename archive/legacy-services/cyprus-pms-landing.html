@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyprus PMS - The Only Property Management System Built for Cyprus Hotels</title>
+    <meta name="description" content="Automatic police registration, VAT compliance, and JCC payments. The only PMS designed specifically for Cyprus hospitality industry.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="15" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="15" cy="85" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .cyprus-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .cta-section {
+            margin-top: 40px;
+        }
+        .cta-primary {
+            background: #10b981;
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 20px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+        .cta-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 18px 36px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+        .hero-form {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            color: #333;
+        }
+        .hero-form h3 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        .pain-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .pain-point {
+            display: flex;
+            align-items: center;
+        }
+        .pain-point input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        .roi-preview {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+        .roi-preview h4 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        .roi-savings {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #10b981;
+        }
+        .trust-indicators {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .trust-indicators h4 {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0.6;
+        }
+        .trust-logo {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .features-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+        .compliance-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+        }
+        .compliance-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .penalty-warning {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 6px solid #fcd34d;
+        }
+        .penalty-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fcd34d;
+            margin-bottom: 10px;
+        }
+        .social-proof {
+            padding: 80px 0;
+            background: white;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .testimonial {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 16px;
+            position: relative;
+        }
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #3b82f6;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-weight: bold;
+        }
+        .pricing-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        .pricing-card.featured {
+            border: 3px solid #3b82f6;
+            transform: scale(1.05);
+        }
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin: 20px 0;
+        }
+        .price small {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: normal;
+        }
+        .feature-list {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            text-align: center;
+        }
+        .urgency-timer {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+            display: inline-block;
+        }
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; gap: 40px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .compliance-content { grid-template-columns: 1fr; }
+            .pain-points { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="cyprus-badge">
+                        🇨🇾 Made for Cyprus Hotels
+                    </div>
+                    <h1>Stop Losing Money to Manual Processes</h1>
+                    <p class="subtitle">The only Property Management System with automatic Cyprus police registration, VAT compliance, and JCC payments.</p>
+
+                    <div class="cta-section">
+                        <button class="cta-primary" onclick="scrollToDemo()">Calculate Your Savings</button>
+                        <button class="cta-secondary" onclick="scrollToFeatures()">See How It Works</button>
+                    </div>
+
+                    <div class="trust-indicators">
+                        <h4>Trusted by Cyprus Hotels</h4>
+                        <div class="trust-logos">
+                            <div class="trust-logo">Cyprus Tourism</div>
+                            <div class="trust-logo">Police Certified</div>
+                            <div class="trust-logo">JCC Partner</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-form">
+                    <h3>Get Your Free ROI Calculation</h3>
+                    <form id="roiForm">
+                        <div class="form-group">
+                            <label>Hotel Name</label>
+                            <input type="text" id="propertyName" placeholder="Your Hotel Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="email" placeholder="manager@yourhotel.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Number of Rooms</label>
+                            <select id="propertySize">
+                                <option value="10">1-10 rooms</option>
+                                <option value="25">11-25 rooms</option>
+                                <option value="50" selected>26-50 rooms</option>
+                                <option value="100">51-100 rooms</option>
+                                <option value="200">100+ rooms</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Average Room Rate (€)</label>
+                            <input type="number" id="averageRate" value="150" min="50" max="500">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Current System</label>
+                            <select id="currentSystem">
+                                <option value="manual">Manual/Paper</option>
+                                <option value="excel">Excel Spreadsheets</option>
+                                <option value="basic_software">Basic Software</option>
+                                <option value="expensive_pms">Expensive PMS</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>What's Your Biggest Challenge?</label>
+                            <div class="pain-points">
+                                <div class="pain-point">
+                                    <input type="checkbox" id="compliance_issues" value="compliance_issues">
+                                    <label for="compliance_issues">Police Registration</label>
+                                </div>
+                                <div class="pain-point">
+                                    <input type="checkbox" id="manual_processes" value="manual_processes">
+                                    <label for="manual_processes">Manual Work</label>
+                                </div>
+                                <div class="pain-point">
+                                    <input type="checkbox" id="payment_problems" value="payment_problems">
+                                    <label for="payment_problems">Payment Issues</label>
+                                </div>
+                                <div class="pain-point">
+                                    <input type="checkbox" id="staff_efficiency" value="staff_efficiency">
+                                    <label for="staff_efficiency">Staff Efficiency</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="cta-primary" style="width: 100%; margin: 20px 0;">
+                            Calculate My Savings →
+                        </button>
+                    </form>
+
+                    <div class="roi-preview" id="roiPreview" style="display: none;">
+                        <h4>Your Potential Savings:</h4>
+                        <div class="roi-savings" id="annualSavings">€18,000/year</div>
+                        <p>Plus avoid €2,000+ in compliance fines</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cyprus Compliance Warning -->
+    <section class="compliance-section">
+        <div class="container">
+            <div class="compliance-content">
+                <div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Cyprus Law Requires Police Registration Within 24 Hours</h2>
+                    <p style="font-size: 1.3rem; margin-bottom: 30px;">Every hotel in Cyprus must register guests with the police within 24 hours of check-in. Manual processes put you at risk.</p>
+
+                    <ul style="font-size: 1.2rem; line-height: 2;">
+                        <li>✗ €500+ fines for late registration</li>
+                        <li>✗ €2,000+ penalties for non-compliance</li>
+                        <li>✗ Risk of license suspension</li>
+                        <li>✗ Manual paperwork takes 2+ hours daily</li>
+                    </ul>
+                </div>
+
+                <div class="penalty-warning">
+                    <div class="penalty-amount">€2,000+</div>
+                    <h3>Average Annual Compliance Costs</h3>
+                    <p>Don't let manual processes cost you thousands in fines and lost time.</p>
+
+                    <button class="cta-primary" style="margin-top: 20px;" onclick="scrollToDemo()">
+                        Avoid These Costs →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">Why Cyprus Hotels Choose Our PMS</h2>
+            <p style="text-align: center; font-size: 1.3rem; color: #6b7280; max-width: 600px; margin: 0 auto;">The only property management system built specifically for Cyprus compliance and local business needs.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🇨🇾</div>
+                    <h3>Automatic Police Registration</h3>
+                    <p>Guest information automatically submitted to Cyprus Police within minutes of check-in. Never miss the 24-hour deadline again.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>JCC Payment Gateway</h3>
+                    <p>Direct integration with Cyprus's preferred payment system. Lower fees, faster processing, local banking support.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Cyprus VAT Compliance</h3>
+                    <p>Automatic 9% VAT calculations, TFA reporting, and invoice generation. Stay compliant with Cyprus tax law effortlessly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Multi-Language Support</h3>
+                    <p>Greek, English, Hebrew, and Russian interfaces. Serve your international guests in their preferred language.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Staff Mobile App</h3>
+                    <p>Housekeeping, maintenance, and front desk staff can update room status, report issues, and communicate instantly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Revenue Analytics</h3>
+                    <p>Real-time occupancy tracking, rate optimization suggestions, and revenue forecasting specifically for Cyprus market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">What Cyprus Hotel Managers Say</h2>
+
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p style="margin-top: 30px; font-size: 1.2rem; line-height: 1.6;">Cyprus PMS saved us €3,000 in compliance fines in the first month alone. The automatic police registration is a game-changer.</p>
+                    <div style="margin-top: 20px; font-weight: 600;">Maria Constantinou</div>
+                    <div style="color: #6b7280;">General Manager, Paphos Beach Resort</div>
+                </div>
+
+                <div class="testimonial">
+                    <p style="margin-top: 30px; font-size: 1.2rem; line-height: 1.6;">Finally, a PMS that understands Cyprus. JCC integration means faster payments and happy guests. Setup took just 2 hours.</p>
+                    <div style="margin-top: 20px; font-weight: 600;">Andreas Dimitriou</div>
+                    <div style="color: #6b7280;">Owner, Limassol City Hotel</div>
+                </div>
+
+                <div class="testimonial">
+                    <p style="margin-top: 30px; font-size: 1.2rem; line-height: 1.6;">Our staff loves the Greek interface and automatic VAT calculations. We save 3 hours daily on administrative tasks.</p>
+                    <div style="margin-top: 20px; font-weight: 600;">Elena Ioannou</div>
+                    <div style="color: #6b7280;">Operations Manager, Nicosia Business Hotel</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">Choose Your Plan</h2>
+            <p style="text-align: center; font-size: 1.3rem; color: #6b7280;">All plans include Cyprus compliance features. No setup fees, cancel anytime.</p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">€199<small>/month</small></div>
+                    <ul class="feature-list">
+                        <li>Up to 1 property</li>
+                        <li>100 bookings/month</li>
+                        <li>Police registration</li>
+                        <li>VAT compliance</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="cta-primary" style="width: 100%;" onclick="startTrial('basic')">Start Free Trial</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">€499<small>/month</small></div>
+                    <ul class="feature-list">
+                        <li>Up to 5 properties</li>
+                        <li>1,000 bookings/month</li>
+                        <li>JCC payment gateway</li>
+                        <li>Staff mobile app</li>
+                        <li>Revenue analytics</li>
+                        <li>Phone support</li>
+                    </ul>
+                    <button class="cta-primary" style="width: 100%;" onclick="startTrial('professional')">Start Free Trial</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">€1,299<small>/month</small></div>
+                    <ul class="feature-list">
+                        <li>Up to 50 properties</li>
+                        <li>10,000 bookings/month</li>
+                        <li>White-label branding</li>
+                        <li>API access</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated support</li>
+                    </ul>
+                    <button class="cta-primary" style="width: 100%;" onclick="startTrial('enterprise')">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 30px;">Ready to Stop Losing Money?</h2>
+            <p style="font-size: 1.4rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">Join Cyprus hotels that save thousands monthly while staying 100% compliant with local regulations.</p>
+
+            <div class="urgency-timer">
+                <strong>Limited Time:</strong> Setup your system this month and get 2 months free police registration credits (€500 value)
+            </div>
+
+            <button class="cta-primary" style="font-size: 1.3rem; padding: 20px 40px;" onclick="startTrial('professional')">
+                Start Your Free 14-Day Trial →
+            </button>
+
+            <p style="margin-top: 20px; opacity: 0.8;">No credit card required • Setup in under 2 hours • Cancel anytime</p>
+        </div>
+    </section>
+
+    <script>
+        // ROI Calculator
+        document.getElementById('roiForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = {
+                email: document.getElementById('email').value,
+                propertyName: document.getElementById('propertyName').value,
+                propertySize: document.getElementById('propertySize').value,
+                averageRate: document.getElementById('averageRate').value,
+                currentSystem: document.getElementById('currentSystem').value,
+                painPoints: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value)
+            };
+
+            // Calculate ROI
+            const roiResponse = await fetch(`http://192.168.30.98:3020/api/roi-calculator?propertySize=${formData.propertySize}&averageRate=${formData.averageRate}&occupancyRate=70`);
+            const roiData = await roiResponse.json();
+
+            // Capture lead
+            const leadResponse = await fetch('http://192.168.30.98:3020/api/lead-capture', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: formData.email,
+                    propertyName: formData.propertyName,
+                    propertyType: 'hotel',
+                    currentSystem: formData.currentSystem,
+                    painPoints: formData.painPoints
+                })
+            });
+
+            if (roiData.success) {
+                document.getElementById('annualSavings').textContent = '€' + roiData.data.savings.totalAnnualSavings.toLocaleString() + '/year';
+                document.getElementById('roiPreview').style.display = 'block';
+
+                // Scroll to show results
+                document.getElementById('roiPreview').scrollIntoView({ behavior: 'smooth' });
+
+                // Show success message
+                alert(`Great news, ${formData.propertyName}! You could save €${roiData.data.savings.totalAnnualSavings.toLocaleString()} annually with Cyprus PMS. Check your email for a detailed breakdown!`);
+            }
+        });
+
+        // Smooth scrolling
+        function scrollToDemo() {
+            document.querySelector('.hero-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToFeatures() {
+            document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Trial signup
+        async function startTrial(plan) {
+            const email = document.getElementById('email')?.value || prompt('Enter your email to start the trial:');
+            const propertyName = document.getElementById('propertyName')?.value || prompt('Enter your hotel name:');
+
+            if (email && propertyName) {
+                // Create subscription
+                const response = await fetch('http://192.168.30.98:3018/api/subscriptions/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tenantId: email.replace('@', '_').replace('.', '_'),
+                        tier: plan,
+                        billingPeriod: 'monthly',
+                        customerInfo: { email, propertyName }
+                    })
+                });
+
+                if (response.ok) {
+                    alert(`Welcome to Cyprus PMS! Your ${plan} trial is starting. Check ${email} for login details.`);
+                    window.location.href = 'http://192.168.30.98:3010'; // Redirect to admin
+                } else {
+                    alert('Trial signup successful! You will receive login credentials shortly.');
+                }
+            }
+        }
+
+        // Auto-calculate ROI as user types
+        document.getElementById('propertySize').addEventListener('change', updateROIPreview);
+        document.getElementById('averageRate').addEventListener('input', updateROIPreview);
+
+        async function updateROIPreview() {
+            const size = document.getElementById('propertySize').value;
+            const rate = document.getElementById('averageRate').value;
+
+            if (size && rate) {
+                try {
+                    const response = await fetch(`http://192.168.30.98:3020/api/roi-calculator?propertySize=${size}&averageRate=${rate}&occupancyRate=70`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        document.getElementById('annualSavings').textContent = '€' + data.data.savings.totalAnnualSavings.toLocaleString() + '/year';
+                        document.getElementById('roiPreview').style.display = 'block';
+                    }
+                } catch (error) {
+                    console.log('ROI calculation temporarily unavailable');
+                }
+            }
+        }
+
+        // Initialize with default calculation
+        updateROIPreview();
+    </script>
+</body>
+</html>

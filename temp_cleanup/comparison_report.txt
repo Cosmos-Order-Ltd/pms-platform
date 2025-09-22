@@ -1,0 +1,65 @@
+File Comparison Report
+======================
+
+Repository: api-gateway
+  Status: Local only (preserved)
+
+Repository: pms-admin
+  Local files: 148
+  Status: Matched with Gitea
+
+Repository: pms-backend
+  Local files: 11107
+  Status: Matched with Gitea
+
+Repository: pms-docs
+  Status: Local only (preserved)
+
+Repository: pms-guest
+  Local files: 57
+  Status: Matched with Gitea
+
+Repository: pms-infrastructure
+  Local files: 0
+  Status: Matched with Gitea
+
+Repository: pms-infrastructure-repo
+  Status: Local only (preserved)
+
+Repository: pms-marketplace
+  Local files: 65
+  Status: Matched with Gitea
+
+Repository: pms-shared-repo
+  Status: Local only (preserved)
+
+Repository: pms-staff
+  Status: Local only (preserved)
+
+Repository: cosmos-real-estate
+  Local files: 48
+  Status: Matched with Gitea
+
+Repository: cyprus-access-control
+  Local files: 29
+  Status: Matched with Gitea
+
+Repository: cyprus-localization
+  Local files: 54
+  Status: Matched with Gitea
+
+Repository: database-schema
+  Local files: 52
+  Status: Matched with Gitea
+
+Repository: invitation-engine
+  Local files: 13369
+  Status: Matched with Gitea
+
+Repository: pms-infrastructure
+  Local files: 36
+  Status: Matched with Gitea
+
+Repository: shared-library
+  Status: Local only (preserved)
+

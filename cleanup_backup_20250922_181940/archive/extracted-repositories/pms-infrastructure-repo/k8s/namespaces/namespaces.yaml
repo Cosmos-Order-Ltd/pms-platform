@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pms-core
+  labels:
+    name: pms-core
+    app.kubernetes.io/name: pms-core
+    app.kubernetes.io/part-of: pms
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pms-backend
+  labels:
+    name: pms-backend
+    app.kubernetes.io/name: pms-backend
+    app.kubernetes.io/part-of: pms
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pms-frontend
+  labels:
+    name: pms-frontend
+    app.kubernetes.io/name: pms-frontend
+    app.kubernetes.io/part-of: pms
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pms-marketplace
+  labels:
+    name: pms-marketplace
+    app.kubernetes.io/name: pms-marketplace
+    app.kubernetes.io/part-of: pms
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pms-infra
+  labels:
+    name: pms-infra
+    app.kubernetes.io/name: pms-infra
+    app.kubernetes.io/part-of: pms
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    name: monitoring
+    app.kubernetes.io/name: monitoring
+    app.kubernetes.io/part-of: pms

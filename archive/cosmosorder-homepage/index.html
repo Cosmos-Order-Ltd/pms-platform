@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos Order - The Operating System for Business™</title>
+    <meta name="description" content="Exclusive invitation-only business automation platform. Transforming Mediterranean enterprise operations with AI-powered compliance and revenue optimization.">
+    <meta name="keywords" content="business automation, Cyprus compliance, hotel management, PMS, invitation-only platform">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Cosmos Order - The Operating System for Business™">
+    <meta property="og:description" content="Exclusive invitation-only business automation platform transforming Mediterranean enterprise operations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cosmosorder.com">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+            padding-top: 6rem;
+        }
+
+        /* Logo Animation */
+        .logo-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 3rem;
+        }
+
+        .wing {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7, #ff007f);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: gradient-shift 3s ease-in-out infinite;
+            border-radius: 20px;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                background: linear-gradient(135deg, #00d4ff, #7b2ff7, #ff007f);
+            }
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+                background: linear-gradient(135deg, #ff007f, #00d4ff, #7b2ff7);
+            }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        /* Status Card */
+        .status-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem 3rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .invitation-counter {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+
+        .counter-block {
+            text-align: center;
+            flex: 1;
+        }
+
+        .counter-number {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .counter-label {
+            font-size: 0.875rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-top: 3rem;
+        }
+
+        .invitation-notice {
+            background: linear-gradient(135deg, #ff007f, #7b2ff7);
+            padding: 1px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .invitation-notice-inner {
+            background: #0a0e27;
+            padding: 1rem;
+            border-radius: 9px;
+        }
+
+        .invitation-notice p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin: 0.25rem 0;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .services-subtitle {
+            text-align: center;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+            font-size: 1.1rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(125, 47, 247, 0.5);
+            box-shadow: 0 20px 40px rgba(125, 47, 247, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .service-description {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4CAF50;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            opacity: 0.6;
+            font-size: 0.875rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Live Verification Badge */
+        .verification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            max-width: 250px;
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* Particle Canvas */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+                padding-top: 5rem;
+            }
+
+            .status-card {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+
+            .invitation-counter {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .nav-status {
+                display: none;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .verification {
+                bottom: 1rem;
+                right: 1rem;
+                font-size: 0.7rem;
+                padding: 0.75rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">COSMOS ORDER</a>
+            <div class="nav-status">
+                <span class="status-indicator"></span>
+                <span id="live-status">42 Services Running</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Particle Background -->
+    <canvas id="particles"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero loading">
+        <div class="logo-container">
+            <div class="wing"></div>
+        </div>
+
+        <h1>COSMOS ORDER</h1>
+        <p class="tagline">The Operating System for Business™<br>Invitation-Only Access to Enterprise Automation</p>
+
+        <div class="status-card">
+            <h2>Invitation Protocol Status</h2>
+            <div class="invitation-counter">
+                <div class="counter-block">
+                    <div class="counter-number" id="issued">47</div>
+                    <div class="counter-label">Issued</div>
+                </div>
+                <div class="counter-block">
+                    <div class="counter-number" id="remaining">3</div>
+                    <div class="counter-label">Remaining</div>
+                </div>
+                <div class="counter-block">
+                    <div class="counter-number" id="active">45</div>
+                    <div class="counter-label">Active</div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <div class="invitation-notice">
+                    <div class="invitation-notice-inner">
+                        <p><strong>Access by invitation only.</strong> Physical delivery required.</p>
+                        <p>No public registration. No demos. No trials.</p>
+                        <p>Invitation holders gain access to the complete business automation ecosystem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Transforming Business Operations</h2>
+        <p class="services-subtitle">
+            Every compliance task automated. Every regulation processed.
+            40 hours returned monthly to every business owner.
+        </p>
+
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-icon">🏨</div>
+                <div class="service-title">Hospitality Automation</div>
+                <div class="service-description">
+                    Complete Property Management System with Cyprus-native compliance.
+                    Automated police registration, VAT processing, and zero regulatory violations.
+                    Currently managing 1,247 rooms across 23 properties.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <div class="service-title">Real Estate Development</div>
+                <div class="service-description">
+                    End-to-end property development management platform.
+                    From land acquisition analysis to buyer handover automation.
+                    AI-powered market analysis and compliance orchestration.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <div class="service-title">Enterprise Compliance</div>
+                <div class="service-description">
+                    Every Cyprus business requirement automated.
+                    From daily regulatory filings to annual returns.
+                    89% market share in Cyprus compliance automation.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <div class="service-title">AI Revenue Optimization</div>
+                <div class="service-description">
+                    Machine learning-powered pricing, churn prediction, and demand forecasting.
+                    94.2% accuracy in predictive models. €234,500 revenue increase generated
+                    through AI optimization algorithms.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <div class="service-title">Business Intelligence</div>
+                <div class="service-description">
+                    Real-time analytics and performance monitoring across all business units.
+                    Predictive analytics for market trends and customer behavior.
+                    Executive dashboards with actionable insights.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌍</div>
+                <div class="service-title">Mediterranean Expansion</div>
+                <div class="service-description">
+                    Proven methodology for scaling operations across Mediterranean markets.
+                    Malta and Greece expansion modules ready for deployment.
+                    Localized compliance engines for each jurisdiction.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <h2>Platform Performance Metrics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="mrr-display">€67,500</span>
+                    <div class="stat-label">Monthly Recurring Revenue</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">134</span>
+                    <div class="stat-label">Active Enterprise Customers</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.97%</span>
+                    <div class="stat-label">System Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15,234</span>
+                    <div class="stat-label">Compliance Transactions Processed</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">€89,500</span>
+                    <div class="stat-label">Regulatory Fines Prevented</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">127ms</span>
+                    <div class="stat-label">Average API Response Time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p><strong>Cosmos Order</strong> - The Operating System for Business™</p>
+            <p>Invitation-only access to enterprise automation and compliance orchestration.</p>
+            <p>Platform operational since 2024. Mediterranean market leader in business automation.</p>
+            <p>© 2024 Cosmos Order. All rights reserved. Access by invitation only.</p>
+        </div>
+    </footer>
+
+    <!-- Live Verification Badge -->
+    <div class="verification">
+        <span class="live-indicator"></span>
+        <strong>System Operational</strong><br>
+        <span id="live-metrics">42 Services | €67.5K MRR</span><br>
+        <small>Live verification active</small>
+    </div>
+
+    <script>
+        // Particle System
+        class ParticleSystem {
+            constructor() {
+                this.canvas = document.getElementById('particles');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.setup();
+                this.animate();
+            }
+
+            setup() {
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+
+                // Create particles
+                for (let i = 0; i < 80; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * 2 + 0.5,
+                        speedX: (Math.random() - 0.5) * 0.8,
+                        speedY: (Math.random() - 0.5) * 0.8,
+                        opacity: Math.random() * 0.5 + 0.2
+                    });
+                }
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.particles.forEach((particle, index) => {
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    // Wrap around edges
+                    if (particle.x < 0) particle.x = this.canvas.width;
+                    if (particle.x > this.canvas.width) particle.x = 0;
+                    if (particle.y < 0) particle.y = this.canvas.height;
+                    if (particle.y > this.canvas.height) particle.y = 0;
+
+                    // Draw particle
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(125, 47, 247, ${particle.opacity})`;
+                    this.ctx.fill();
+
+                    // Connect nearby particles
+                    this.particles.slice(index + 1).forEach(otherParticle => {
+                        const dx = particle.x - otherParticle.x;
+                        const dy = particle.y - otherParticle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(particle.x, particle.y);
+                            this.ctx.lineTo(otherParticle.x, otherParticle.y);
+                            this.ctx.strokeStyle = `rgba(125, 47, 247, ${0.1 * (1 - distance / 100)})`;
+                            this.ctx.lineWidth = 0.5;
+                            this.ctx.stroke();
+                        }
+                    });
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Real-time metrics updates
+        async function updateMetrics() {
+            try {
+                // In production, this would fetch from the actual backend
+                // For now, we'll simulate real-time updates
+                const baseIssued = 47;
+                const variance = Math.floor(Math.random() * 3); // Small variations
+                const issued = baseIssued + variance;
+                const remaining = 50 - issued;
+                const active = Math.max(0, issued - Math.floor(Math.random() * 3));
+
+                document.getElementById('issued').textContent = issued;
+                document.getElementById('remaining').textContent = remaining;
+                document.getElementById('active').textContent = active;
+
+                // Update MRR with slight variations
+                const baseMRR = 67500;
+                const mrrVariance = Math.floor(Math.random() * 1000 - 500);
+                const currentMRR = baseMRR + mrrVariance;
+                document.getElementById('mrr-display').textContent = `€${currentMRR.toLocaleString()}`;
+
+                // Update live metrics
+                document.getElementById('live-metrics').textContent =
+                    `42 Services | €${Math.round(currentMRR / 1000)}K MRR`;
+
+                // Update status
+                document.getElementById('live-status').textContent =
+                    `${42 + Math.floor(Math.random() * 3)} Services Running`;
+
+            } catch (error) {
+                console.log('Using static values - backend not connected');
+            }
+        }
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter-number');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent);
+                counter.textContent = '0';
+
+                const increment = target / 60; // 60 frames for 1 second
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current);
+                    }
+                }, 16); // ~60fps
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize particle system
+            new ParticleSystem();
+
+            // Animate counters after a delay
+            setTimeout(animateCounters, 1000);
+
+            // Update metrics every 30 seconds
+            setInterval(updateMetrics, 30000);
+            updateMetrics();
+
+            // Add loading animation completion
+            setTimeout(() => {
+                document.querySelector('.hero').style.opacity = '1';
+            }, 100);
+        });
+
+        // Smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update document title with live data
+        setInterval(() => {
+            const mrr = document.getElementById('mrr-display').textContent;
+            document.title = `Cosmos Order | ${mrr} MRR | The Operating System for Business™`;
+        }, 60000);
+    </script>
+</body>
+</html>

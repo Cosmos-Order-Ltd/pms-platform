@@ -1,0 +1,14 @@
+apiVersion: v2
+name: pms-backend
+description: PMS Backend API Service
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - pms
+  - backend
+  - api
+  - express
+home: https://github.com/yourorg/pms-backend
+maintainers:
+  - name: PMS Team
+    email: team@pms.com
