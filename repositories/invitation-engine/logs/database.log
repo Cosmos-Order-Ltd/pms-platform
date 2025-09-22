@@ -1,7 +1,0 @@
-{"duration":2016,"error":"Connection terminated due to connection timeout","level":"error","message":"Query failed","query":"SELECT 1","timestamp":"2025-09-21T02:08:44.498Z"}
-{"address":"192.168.30.98","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"Redis connection error connect ECONNREFUSED 192.168.30.98:6379","port":6379,"stack":"Error: connect ECONNREFUSED 192.168.30.98:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)","syscall":"connect","timestamp":"2025-09-21T02:08:44.505Z"}
-{"level":"info","message":"Reconnecting to Redis...","timestamp":"2025-09-21T02:08:44.509Z"}
-{"address":"192.168.30.98","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"Redis connection error connect ECONNREFUSED 192.168.30.98:6379","port":6379,"stack":"Error: connect ECONNREFUSED 192.168.30.98:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)","syscall":"connect","timestamp":"2025-09-21T02:08:46.560Z"}
-{"level":"info","message":"Reconnecting to Redis...","timestamp":"2025-09-21T02:08:46.614Z"}
-{"address":"192.168.30.98","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"Redis connection error connect ECONNREFUSED 192.168.30.98:6379","port":6379,"stack":"Error: connect ECONNREFUSED 192.168.30.98:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)","syscall":"connect","timestamp":"2025-09-21T02:08:48.668Z"}
-{"level":"info","message":"Reconnecting to Redis...","timestamp":"2025-09-21T02:08:48.775Z"}
